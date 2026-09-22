@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal JobTracker - Template Visual Desktop</title>
+        <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- ================== HEADER FIXO ================== -->
+    <header class="top-navbar">
+        <div class="nav-logo">
+            <img src="file:///C:/Users/gabri/.gemini/antigravity/brain/34cb92e4-eb17-4ec2-b3b2-4bb1195bc404/.user_uploaded/media_1790001483034.png" alt="Logotipo JobTracker">
+            <span class="nav-title">PERSONAL JOBTRACKER</span>
+        </div>
+        
+        <button id="themeToggle" class="theme-toggle-btn" onclick="alternarTema()">
+            ☀️ Modo Claro
+        </button>
+    </header>
+
+    <div class="tracker-bg">
+        <div class="grid"></div>
+
+        <!-- MAPA TÁTICO ESTÁTICO (LINHA VERTICAL À ESQUERDA) -->
+        <div class="radar-map-container">
+            <svg class="radar-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMinYMid slice">
+                
+                <g transform="translate(80, 540)">
+                    <circle cx="0" cy="0" r="150" fill="none" stroke="var(--tracker-glow)" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4"/>
+                    <circle cx="0" cy="0" r="350" fill="none" stroke="var(--tracker-glow)" stroke-width="1" stroke-dasharray="2 12" opacity="0.2"/>
+                    
+                    <line x1="0" y1="-1000" x2="0" y2="1000" stroke="var(--tracker-glow)" stroke-width="1" opacity="0.3" stroke-dasharray="10 10" />
+                    <line x1="-1000" y1="0" x2="2000" y2="0" stroke="var(--tracker-glow)" stroke-width="1" opacity="0.3" stroke-dasharray="10 10" />
+
+                    <!-- Caminho de Conexão Vertical -->
+                    <path d="M 0,-280 L 15,-140 L 0,0 L 15,140 L 0,280" fill="none" stroke="var(--tracker-glow)" stroke-width="1.5" opacity="0.6" stroke-dasharray="5 5"/>
+
+                    <g transform="translate(0, -280)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 0s"/>
+                        <circle cx="0" cy="0" r="6" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">PAULISTA</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">TI HOTZONE</text>
+                    </g>
+
+                    <g transform="translate(15, -140)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 0.5s"/>
+                        <circle cx="0" cy="0" r="7" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">FARIA LIMA</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">FINTECH HUB</text>
+                    </g>
+
+                    <g transform="translate(0, 0)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 1.0s"/>
+                        <circle cx="0" cy="0" r="6" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">BERRINI</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">TECH CORPORATE</text>
+                    </g>
+
+                    <g transform="translate(15, 140)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 1.5s"/>
+                        <circle cx="0" cy="0" r="7" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">MORUMBI</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">TECH HUB</text>
+                    </g>
+
+                    <g transform="translate(0, 280)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 2.0s"/>
+                        <circle cx="0" cy="0" r="6" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">REMOTE</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">GLOBAL NETWORK</text>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ABAS DE NAVEGAÇÃO -->
+    <div class="tabs-container">
+        <button class="tab-btn active" id="tab-nova" onclick="alternarAba('nova')">Nova Candidatura</button>
+        <button class="tab-btn" id="tab-ativas" onclick="alternarAba('ativas')">Processos Ativos</button>
+    </div>
+
+    <!-- VIEW 1: NOVA CANDIDATURA -->
+    <div id="view-nova" class="view-section active">
+        <div class="form-container">
+            <div class="hud-corners"></div>
+            <div class="header-section">
+                <h2>CADASTRAR VAGA</h2>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Data da Candidatura <span class="asterisk">*</span></label>
+                    <input type="date" id="data" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Empresa <span class="asterisk">*</span></label>
+                    <input type="text" id="empresa" placeholder="Digite o nome da empresa..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Setor <span class="asterisk">*</span></label>
+                    <input type="text" id="setor" placeholder="Ex: Tecnologia, Financeiro, Varejo" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tamanho da Empresa <span class="asterisk">*</span></label>
+                    <select id="tamanho" required>
+                        <option value="">Selecione o Tamanho...</option>
+                        <option value="Pequena">Pequena</option>
+                        <option value="Média">Média</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>URL do Site ou Vaga <span class="asterisk">*</span></label>
+                    <input type="url" id="urlSite" placeholder="Link da vaga ou site da empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cargo / Vaga <span class="asterisk">*</span></label>
+                    <select id="vaga" required>
+                        <option value="">Selecione a Vaga...</option>
+                        <option value="1" title="SQL, Excel, Power BI, Python básico">Analista de Dados - Júnior</option>
+                        <option value="2" title="SQL Avançado (CTEs, Window Functions), Python (Pandas/PySpark), Power BI Avançado, Modelagem de Dados, Git">Analista de Dados - Pleno</option>
+                        <option value="3" title="SQL Básico/Intermediário, Power BI (DAX e Power Query), Excel Avançado, Lógica de Negócios">Analista de BI - Júnior</option>
+                        <option value="4" title="SQL Avançado, DAX, Modelagem Dimensional, ETL">Analista de BI - Pleno</option>
+                        <option value="5" title="Python, SQL, Azure, Pipelines">Engenheiro de Dados - Júnior</option>
+                        <option value="6" title="Python, SQL Avançado, Spark, Azure Data Factory/Databricks, Modelagem Dimensional, Orquestração (Airflow)">Engenheiro de Dados - Pleno</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Status do Processo <span class="asterisk">*</span></label>
+                    <select id="status" required>
+                        <option value="">Selecione o Status...</option>
+                        <option value="1">Aplicado</option>
+                        <option value="2">Entrevista</option>
+                        <option value="3">Teste Técnico</option>
+                        <option value="4">Proposta</option>
+                        <option value="5">Rejeitado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Plataforma de Origem <span class="asterisk">*</span></label>
+                    <select id="plataforma" required>
+                        <option value="">Selecione a Plataforma...</option>
+                        <option value="1">LinkedIn</option>
+                        <option value="2">Gupy</option>
+                        <option value="3">Site da Empresa</option>
+                        <option value="4">Indicação</option>
+                        <option value="5">Infojobs</option>
+                        <option value="6">Catho</option>
+                        <option value="7">vagas.com</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Pretensão Salarial (R$) <span class="optional-tag">(Opcional)</span></label>
+                    <input type="number" id="pretensao" placeholder="Ex: 15000" step="0.01">
+                </div>
+
+                <div class="form-group full-width">
+                    <button id="btnSalvar" onclick="salvarCandidatura()">Salvar Candidatura</button>
+                </div>
+
+                <div id="notification" class="notification full-width"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: PROCESSOS ATIVOS -->
+    <div id="view-ativas" class="view-section">
+        
+        <!-- BARRA DE CONTROLES: FILTROS E PAGINAÇÃO -->
+        <div class="controls-bar" id="controls-bar" style="display: none;">
+            <div class="filter-group">
+                <input type="text" id="filtro-empresa" placeholder="Buscar por empresa..." oninput="aplicarFiltros()">
+                <select id="filtro-status" onchange="aplicarFiltros()">
+                    <option value="">Todos os Status</option>
+                    <option value="1">Aplicado</option>
+                    <option value="2">Entrevista</option>
+                    <option value="3">Teste Técnico</option>
+                    <option value="4">Proposta</option>
+                    <option value="5">Rejeitado</option>
+                </select>
+            </div>
+            <div class="pagination-controls">
+                <button class="btn-page" id="btn-prev" onclick="mudarPagina(-1)">Anterior</button>
+                <span id="page-info">Página 1 de 1</span>
+                <button class="btn-page" id="btn-next" onclick="mudarPagina(1)">Próxima</button>
+            </div>
+        </div>
+
+        <div id="loading-spinner" style="text-align:center; padding: 40px; display:none;">
+            <p style="font-weight:bold; color:var(--primary-btn); font-size:1.1rem; letter-spacing:1px;">SINCRONIZANDO DADOS...</p>
+        </div>
+
+        <div class="cards-grid" id="cards-container">
+            <!-- Cards gerados via JS serão injetados aqui -->
+        </div>
+    </div>
+
+    <!-- FOOTER PROFISSIONAL -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <span class="footer-title">Personal JobTracker</span>
+            <span class="footer-separator">•</span>
+            <span class="footer-signature">Desenvolvido por Gabriel Vieira</span>
+        </div>
+    </footer>
+
+        <script src="app.js" defer></script>
+
+</body>
+</html>
