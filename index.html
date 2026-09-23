@@ -82,6 +82,7 @@
     <div class="tabs-container">
         <button class="tab-btn active" id="tab-nova" onclick="alternarAba('nova')">Nova Candidatura</button>
         <button class="tab-btn" id="tab-ativas" onclick="alternarAba('ativas')">Processos Ativos</button>
+        <button class="tab-btn" id="tab-dashboard" onclick="alternarAba('dashboard')">Dashboard</button>
     </div>
 
     <!-- VIEW 1: NOVA CANDIDATURA -->
@@ -205,6 +206,14 @@
 
         <div class="cards-grid" id="cards-container">
             <!-- Cards gerados via JS serão injetados aqui -->
+        </div>
+    </div>
+
+    
+    <!-- VIEW 3: DASHBOARD POWER BI -->
+    <div id="view-dashboard" class="view-section">
+        <div class="iframe-wrapper">
+            <iframe title="JobTracker" src="https://app.powerbi.com/view?r=eyJrIjoiZjVhZWNiYmEtMzk0Ni00Y2NkLTk0YjgtNmFiY2I4NGQwZmVmIiwidCI6IjM4YjNlOTY0LWZhNzItNDhjZC05MTk5LTI1ZTJkODQzYjMzNiJ9&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
         </div>
     </div>
 

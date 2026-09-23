@@ -24,14 +24,19 @@
 
         // Navegação por Abas
         function alternarAba(abaDestino) {
-            document.getElementById('tab-nova').classList.remove('active');
-            document.getElementById('tab-ativas').classList.remove('active');
+            const abas = ['nova', 'ativas', 'dashboard'];
+            
+            // 1. Remove a classe active de todas as abas e views
+            abas.forEach(aba => {
+                document.getElementById('tab-' + aba).classList.remove('active');
+                document.getElementById('view-' + aba).classList.remove('active');
+            });
+            
+            // 2. Adiciona a classe active apenas no alvo clicado
             document.getElementById('tab-' + abaDestino).classList.add('active');
-
-            document.getElementById('view-nova').classList.remove('active');
-            document.getElementById('view-ativas').classList.remove('active');
             document.getElementById('view-' + abaDestino).classList.add('active');
 
+            // 3. Atualiza os dados apenas quando for a aba de processos
             if(abaDestino === 'ativas') {
                 carregarVagas();
             }

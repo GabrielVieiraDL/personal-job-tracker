@@ -650,6 +650,37 @@
             letter-spacing: 0.5px;
         }
 
+        
+        /* ====================================================
+           IFRAME POWER BI
+           ==================================================== */
+                .iframe-wrapper {
+            position: relative;
+            /* Expande além do container do formulário */
+            width: 95vw;
+            max-width: 1600px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            
+            /* Ocupa a tela verticalmente */
+            height: calc(100vh - 180px);
+            min-height: 600px;
+            
+            /* Estilização */
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            background-color: var(--card-bg);
+            overflow: hidden;
+        }
+        .iframe-wrapper iframe {
+            width: 100%;
+            height: calc(100% + 38px); /* Estica o iFrame 38px a mais para baixo */
+            margin-bottom: -38px; /* Traz o espaço extra para dentro da área invisível (overflow: hidden) */
+            border: 0;
+            display: block;
+        }
+
         /* ====================================================
            MEDIA QUERIES
            ==================================================== */
