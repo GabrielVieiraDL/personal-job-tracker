@@ -22,7 +22,7 @@
 <!-- 📸 IMAGEM 1: COLOQUE A FOTO DA TELA INICIAL (FORMULÁRIO) NESTE LINK ABAIXO -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://via.placeholder.com/800x400.png?text=Cole+o+link+da+sua+Screenshot+do+Site+Aqui" alt="Tela Inicial do Personal JobTracker" width="850">
+  <img src="https://github.com/user-attachments/assets/1c99f0bf-4cb8-45ea-a3b8-79f67f960af3" alt="Tela Inicial do Personal JobTracker" width="850">
 </p>
 
 <p align="center">
@@ -73,7 +73,7 @@ O ecossistema atinge sua maturidade analítica através de um modelo semântico 
 <!-- 📸 IMAGEM 2: COLOQUE A FOTO DO SEU DASHBOARD DO POWER BI NESTE LINK ABAIXO -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://via.placeholder.com/800x400.png?text=Cole+o+link+da+sua+Screenshot+do+PowerBI+Aqui" alt="Dashboard do Power BI" width="850">
+  <img src="https://github.com/user-attachments/assets/e0aac989-382e-4e4d-bbf5-fd3158d32d8f" alt="Dashboard do Power BI" width="850">
 </p>
 
 ## ✨ Features do Web App
@@ -86,7 +86,7 @@ O ecossistema atinge sua maturidade analítica através de um modelo semântico 
 <!-- 📸 IMAGEM 3: COLOQUE A FOTO DOS CARDS (PROCESSOS ATIVOS) NESTE LINK ABAIXO -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://via.placeholder.com/800x400.png?text=Cole+o+link+da+sua+Screenshot+dos+Cards+Aqui" alt="Tela de Processos Ativos" width="850">
+  <img src="https://github.com/user-attachments/assets/56063d1b-9f6a-46c6-b3d4-2283d724e625" alt="Tela de Processos Ativos" width="850">
 </p>
 
 ## 🚀 Tecnologias e Stack
@@ -99,7 +99,8 @@ O ecossistema atinge sua maturidade analítica através de um modelo semântico 
 
 ---
 
+
 <p align="center">
   <b>Desenvolvido por Gabriel Vieira</b><br>
-  <i>Gestão de Dados e Engenharia de Software</i>
+  <i>Gestão e Análise de Dados e Engenharia de Software</i>
 </p>
