@@ -654,31 +654,29 @@
         /* ====================================================
            IFRAME POWER BI
            ==================================================== */
-                .iframe-wrapper {
+                                        .iframe-wrapper {
             position: relative;
-            /* Expande além do container do formulário */
-            width: 95vw;
-            max-width: 1600px;
+            /* Breakout Imersivo - Tamanho Elegante */
+            width: 90vw;
+            max-width: 1280px;
             margin-left: 50%;
             transform: translateX(-50%);
             
-            /* Ocupa a tela verticalmente */
-            height: calc(100vh - 180px);
-            min-height: 600px;
+            /* O segredo: o pai abraça o filho, mas corta o que sobrar */
+            overflow: hidden;
             
             /* Estilização */
             border-radius: 12px;
             border: 1px solid var(--border-color);
             box-shadow: var(--card-shadow);
             background-color: var(--card-bg);
-            overflow: hidden;
         }
         .iframe-wrapper iframe {
             width: 100%;
-            height: calc(100% + 38px); /* Estica o iFrame 38px a mais para baixo */
-            margin-bottom: -38px; /* Traz o espaço extra para dentro da área invisível (overflow: hidden) */
-            border: 0;
+            aspect-ratio: 16 / 9; /* Força o iframe a ser PERFEITAMENTE 16:9 */
             display: block;
+            border: 0;
+            margin-bottom: -40px; /* Puxa o rodapé para fora do limite do pai */
         }
 
         /* ====================================================
