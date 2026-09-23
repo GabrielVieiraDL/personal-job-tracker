@@ -102,5 +102,5 @@ O ecossistema atinge sua maturidade analítica através de um modelo semântico 
 
 <p align="center">
   <b>Desenvolvido por Gabriel Vieira</b><br>
-  <i>Gestão e Análise de Dados e Engenharia de Software</i>
+  <i>Gestão, Análise e Engenharia de Dados</i>
 </p>
