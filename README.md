@@ -41,7 +41,7 @@ A porta de entrada do dado. Formulário validado focado em UX (Dark/Light mode e
 <!-- 📸 IMAGEM 1: TELA DO FORMULÁRIO -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/89aea393-aa19-45b4-9af6-bed682c46085" alt="Nova Candidatura" width="1050">
+  <img src="https://github.com/user-attachments/assets/a89bf3fd-cd3c-439c-a08a-d55331548554" alt="Nova Candidatura" width="1050">
 </p>
 
 ### 2️⃣ Tela: Processos Ativos (Gestão e CRUD)
@@ -54,7 +54,7 @@ O painel de controle operacional onde a mágica acontece.
 <!-- 📸 IMAGEM 2: TELA DE PROCESSOS ATIVOS -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f78c9241-490f-49b2-980c-da5bdac7b057" alt="Processos Ativos" width="1050">
+  <img src="https://github.com/user-attachments/assets/2042b93a-1c73-4be6-806c-a31fb519ca9c" alt="Processos Ativos" width="1050">
 </p>
 
 ### 3️⃣ Tela: Dashboard (Embedded Analytics)
