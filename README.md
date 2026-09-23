@@ -15,7 +15,7 @@
 </p>
 
 <h3 align="center">
-  🌐 <a href="https://wonderful-flower-098d5d30f.1.azurestaticapps.net/">Acessar o Sistema ao Vivo (Live Demo)</a> 🌐
+  🌐 <a href="https://wonderful-flower-098d5d30f.1.azurestaticapps.net/">Acessar o Sistema ao Vivo</a> 🌐
 </h3>
 
 ---
@@ -41,7 +41,7 @@ A porta de entrada do dado. Formulário validado focado em UX (Dark/Light mode e
 <!-- 📸 IMAGEM 1: TELA DO FORMULÁRIO -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/89aea393-aa19-45b4-9af6-bed682c46085" alt="Nova Candidatura" width="850">
+  <img src="https://github.com/user-attachments/assets/89aea393-aa19-45b4-9af6-bed682c46085" alt="Nova Candidatura" width="950">
 </p>
 
 ### 2️⃣ Tela: Processos Ativos (Gestão e CRUD)
@@ -54,7 +54,7 @@ O painel de controle operacional onde a mágica acontece.
 <!-- 📸 IMAGEM 2: TELA DE PROCESSOS ATIVOS -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f78c9241-490f-49b2-980c-da5bdac7b057" alt="Processos Ativos" width="850">
+  <img src="https://github.com/user-attachments/assets/f78c9241-490f-49b2-980c-da5bdac7b057" alt="Processos Ativos" width="950">
 </p>
 
 ### 3️⃣ Tela: Dashboard (Embedded Analytics)
@@ -65,7 +65,7 @@ Visão executiva integrada nativamente dentro da aplicação.
 <!-- 📸 IMAGEM 3: TELA DO DASHBOARD POWER BI -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3ed874c7-5ef5-4909-a349-6c773c9f875b" alt="Dashboard do Power BI" width="850">
+  <img src="https://github.com/user-attachments/assets/3ed874c7-5ef5-4909-a349-6c773c9f875b" alt="Dashboard do Power BI" width="950">
 </p>
 
 ---
@@ -78,7 +78,7 @@ O coração técnico desta aplicação reside na estruturação rigorosa do banc
 <!-- 📸 IMAGEM 4: FOTO DO SEU DER (DIAGRAMA) -->
 <!-- ========================================== -->
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/78fa330a-cd49-40f6-b001-69a8108d1a9d" alt="Diagrama de Entidade-Relacionamento (DER)" width="850">
+  <img src="https://github.com/user-attachments/assets/78fa330a-cd49-40f6-b001-69a8108d1a9d" alt="Diagrama de Entidade-Relacionamento (DER)" width="950">
 </p>
 
 - **A Tabela Fato (`Fato_Candidaturas`):** Atua como o registro imutável e magnético dos eventos. Ela documenta a granularidade máxima das transações corporativas. Toda vez que uma candidatura é salva ou um status muda, um novo registro histórico é gerado. Ela armazena métricas puras, carimbos temporais (*timestamps*) e as chaves estrangeiras (FKs) garantindo rastreabilidade e controle de SCD (Slowly Changing Dimensions).
