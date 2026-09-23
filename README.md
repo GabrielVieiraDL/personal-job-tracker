@@ -4,14 +4,19 @@
   <br>
 </h1>
 
-<h4 align="center">Uma aplicação Full-Stack serverless corporativa para gestão estratégica de candidaturas, integrada a Analytics e Business Intelligence.</h4>
+<h4 align="center">Uma aplicação Full-Stack corporativa para gestão estratégica de candidaturas, rodando 100% Serverless no Azure.</h4>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Frontend-Vanilla_JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/Deploy-Azure_Static_Web_Apps-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white">
   <img src="https://img.shields.io/badge/Middleware-Power_Automate-0078D4?style=for-the-badge&logo=powerautomate&logoColor=white">
   <img src="https://img.shields.io/badge/Database-Azure_SQL-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white">
   <img src="https://img.shields.io/badge/BI-Power_BI-F2C811?style=for-the-badge&logo=Power%20BI&logoColor=black">
 </p>
+
+<h3 align="center">
+  🌐 <a href="https://wonderful-flower-098d5d30f.1.azurestaticapps.net/">Acessar o Web App Ao Vivo</a> &nbsp;|&nbsp; 📊 <a href="https://app.powerbi.com/view?r=eyJrIjoiZjVhZWNiYmEtMzk0Ni00Y2NkLTk0YjgtNmFiY2I4NGQwZmVmIiwidCI6IjM4YjNlOTY0LWZhNzItNDhjZC05MTk5LTI1ZTJkODQzYjMzNiJ9">Acessar o Dashboard Power BI</a>
+</h3>
 
 <!-- ========================================== -->
 <!-- 📸 IMAGEM 1: COLOQUE A FOTO DA TELA INICIAL (FORMULÁRIO) NESTE LINK ABAIXO -->
@@ -22,33 +27,32 @@
 
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre</a> •
-  <a href="#-arquitetura">Arquitetura</a> •
-  <a href="#-features">Features</a> •
-  <a href="#-tecnologias">Tecnologias</a> •
-  <a href="#-power-bi-e-analytics">Power BI</a> •
-  <a href="#-como-executar">Como Executar</a>
+  <a href="#-arquitetura-e-deploy">Arquitetura & Deploy</a> •
+  <a href="#-features-do-web-app">Features</a> •
+  <a href="#-camada-semântica-e-analytics-power-bi">Power BI</a> •
+  <a href="#-tecnologias">Tecnologias</a>
 </p>
 
 ---
 
 ## 💡 Sobre o Projeto
 
-O **Personal JobTracker** nasceu da necessidade de gerenciar o alto volume de aplicações em vagas de tecnologia de forma estruturada, saindo de planilhas convencionais para uma solução **API-First** guiada a dados. 
+O **Personal JobTracker** nasceu da necessidade de gerenciar o alto volume de aplicações em vagas de tecnologia de forma estruturada. Saindo de planilhas convencionais, o projeto evoluiu para uma solução **API-First** guiada a dados. 
 
-Projetado com princípios de **Clean Code** e **Separation of Concerns**, o sistema possui uma interface responsiva focada em UX (Glassmorphism e Dark Theme), enquanto o back-end roda de forma 100% serverless, utilizando gatilhos HTTP do Power Automate como API Gateway para interagir com procedures no Azure SQL. O consumo final dos dados é realizado por um Dashboard avançado em Power BI.
+O sistema possui uma interface focada em UX (Glassmorphism e Dark/Light Theme nativo) construída sob os princípios de **Clean Code**. Todo o ecossistema roda de forma **100% Serverless** na nuvem da Microsoft (Azure), garantindo alta disponibilidade e segurança, culminando em um consumo de dados analítico e robusto através de Business Intelligence.
 
-## 🏗️ Arquitetura
+## 🏗️ Arquitetura e Deploy (Azure)
 
-O ecossistema foi construído visando baixo custo de manutenção, alta disponibilidade e segurança, separando completamente a camada de apresentação, a regra de negócio e a camada de analytics.
+A aplicação está hospedada e distribuída globalmente utilizando o **Azure Static Web Apps**. O pipeline de **CI/CD** (Continuous Integration / Continuous Deployment) foi configurado nativamente através de **GitHub Actions**, permitindo que cada novo *commit* feito no repositório recompile e atualize o sistema em produção de forma 100% automática, sem tempo de inatividade (downtime).
 
 ```mermaid
 graph LR
-    A[Frontend SPA<br>Vanilla JS] -- Fetch API<br>(POST / GET) --> B((Power Automate<br>HTTP Webhooks))
+    A[Azure Static Web App<br>Vanilla JS] -- Fetch API<br>(POST / GET) --> B((Power Automate<br>HTTP Webhooks))
     B -- Stored Procedures --> C[(Azure SQL Database)]
     C -- Retorna Payload JSON --> B
     B -- HTTP 200 OK --> A
     
-    C -. Direct Query / Import .-> D[Dashboard<br>Power BI]
+    C -. Scheduled Refresh<br>(Import) .-> D[Power BI Service<br>Workspace]
     
     style A fill:#0B1120,stroke:#00E5FF,stroke-width:2px,color:#F8FAFC
     style B fill:#0078D4,stroke:#005A9E,stroke-width:2px,color:#FFFFFF
@@ -56,14 +60,14 @@ graph LR
     style D fill:#F2C811,stroke:#D1A300,stroke-width:2px,color:#000000
 ```
 
-## 📊 Power BI e Analytics
+## 📊 Camada Semântica e Analytics (Power BI)
 
-A aplicação conta com um modelo semântico rico lido nativamente pelo Power BI. O arquivo `.pbix` está disponível na pasta `/powerbi` deste repositório para consulta.
+O ecossistema atinge sua maturidade analítica através de um modelo semântico de alto rigor técnico, publicado no **Power BI Service**, desenhado para transformar os dados brutos de candidaturas em inteligência e vantagem competitiva. (O arquivo `.pbix` fonte está na pasta `/powerbi`).
 
-**Destaques do Dashboard:**
-- Modelagem multidimensional (Star Schema) conectada diretamente ao Azure SQL.
-- Truque de UX Avançado: Botão de **Modo Claro / Modo Escuro** (Dark/Light Theme toggle) integrado à navegação de bookmarks no report.
-- Acompanhamento da taxa de conversão (Funil de Status) e volumetria por plataforma e tamanho de empresa.
+- **Conectividade & Orquestração:** Consumo do banco relacional **Azure SQL Database** utilizando o método *Import*. A orquestração dos dados é garantida via *Scheduled Refresh* nativo do Power BI Service, realizando atualizações autônomas diárias sem a necessidade de um gateway local.
+- **Modelagem de Dados (Star Schema):** Arquitetura estritamente multidimensional. Os eventos transacionais de mudança de status foram isolados na `Fato_Candidaturas`, cercada por tabelas descritivas normalizadas (`Dim_Empresa`, `Dim_Status`, etc.), garantindo máxima performance de filtragem e integridade dos relacionamentos (1:*).
+- **Time Intelligence Computada:** Para desonerar a engine do banco de dados relacional e flexibilizar as análises temporais temporárias, a `Dim_Calendario` foi gerada de forma virtual, puramente via DAX (`CALENDARAUTO()`), absorvendo automaticamente as janelas temporais de início e fim da tabela fato.
+- **UI/UX e Storytelling:** Interface imersiva construída sob um *Dark Theme* corporativo. O painel trata as ausências de dados (*Empty States*) de forma fluida e é fortemente ancorado em métricas operacionais de funil: mapeamento de gargalos por etapa (Drop-off Rate), taxa de conversão consolidada e mineração ativa de oportunidades.
 
 <!-- ========================================== -->
 <!-- 📸 IMAGEM 2: COLOQUE A FOTO DO SEU DASHBOARD DO POWER BI NESTE LINK ABAIXO -->
@@ -74,15 +78,9 @@ A aplicação conta com um modelo semântico rico lido nativamente pelo Power BI
 
 ## ✨ Features do Web App
 
-- **Padrão SPA (Single Page Application):** Navegação fluida via abas entre o formulário de cadastro e a dashboard de acompanhamento, sem recarregar a página.
-- **Governança de Dados Front-End:**
-  - Sistema de paginação assíncrona (Client-side) configurado para exibição limpa em grid.
-  - Filtros dinâmicos cruzados: Busca por *Nome da Empresa* (Text-match) e *Status do Processo* (Dropdown).
-- **Operações CRUD Assíncronas:**
-  - **Create:** Cadastro de nova vaga com validação severa de DOM (Required Fields).
-  - **Read:** Sincronização em tempo real de vagas ativas no banco.
-  - **Update:** Mudança de etapa do processo seletivo via requisição `PATCH/POST` acionada diretamente de dentro do Card.
-- **UI/UX Premium:** Design imersivo corporativo, suporte a Dark/Light Mode nativo, e plano de fundo tático interativo renderizado em SVG (Radar Tecnológico de SP).
+- **Governança de Dados Front-End:** Regras de negócio restritas (remoção de status terminais do painel de input) e paginação assíncrona (*client-side*) projetada para garantir performance constante mesmo em alta volumetria.
+- **Filtros Dinâmicos Cruzados:** Motor de busca assíncrono para filtro por Nome da Empresa (*text-match*) e status do processo (*dropdown*).
+- **Operações CRUD via REST:** Inserção, Leitura e Atualização (*Patching*) de status orquestrados dinamicamente pelos webhooks do Power Automate.
 
 <!-- ========================================== -->
 <!-- 📸 IMAGEM 3: COLOQUE A FOTO DOS CARDS (PROCESSOS ATIVOS) NESTE LINK ABAIXO -->
@@ -91,31 +89,13 @@ A aplicação conta com um modelo semântico rico lido nativamente pelo Power BI
   <img src="https://via.placeholder.com/800x400.png?text=Cole+o+link+da+sua+Screenshot+dos+Cards+Aqui" alt="Tela de Processos Ativos" width="850">
 </p>
 
-## 🚀 Tecnologias
+## 🚀 Tecnologias e Stack
 
-- **Front-End:** HTML5 Semântico, CSS3 (CSS Grid, Flexbox, Variáveis nativas, Animações e Glassmorphism), e JavaScript Vanilla (ES6+, Async/Await, Fetch API).
-- **Middleware:** Microsoft Power Automate (Fluxos de Nuvem com Triggers HTTP Request/Response).
+- **Front-End & Hospedagem:** Vanilla JS, CSS3, HTML5 Semântico hospedados em **Azure Static Web Apps** com CI/CD gerido no **GitHub Actions**.
+- **Middleware:** Microsoft Power Automate (API Gateway Serverless).
 - **Back-End/Database:** Microsoft Azure SQL Database.
-- **Linguagem de Banco:** T-SQL (Stored Procedures com controle de transação, funções condicionais e captura de `SCOPE_IDENTITY()`).
-- **Analytics:** Microsoft Power BI (DAX, Power Query).
-
-## 🗄️ Modelagem de Dados (Azure SQL)
-
-O banco foi estruturado utilizando o modelo multidimensional (Star Schema) para facilitar integrações de BI.
-- **Fato_Candidaturas:** Armazena as métricas do processo (Pretensão Salarial, Data, ID_Status, etc).
-- **Dimensões:** `Dim_Empresa` (com lógica SCD Tipo 1 via Stored Procedure para Upsert automático), `Dim_Status`, `Dim_Plataforma`, etc.
-
-## 🛠️ Como Executar
-
-Por ser uma aplicação baseada em Cloud (Serverless), o back-end está hospedado no Azure. Para rodar a camada de visualização localmente:
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/SeuUsuario/personal-jobtracker.git
-```
-2. Abra a pasta do projeto.
-3. Como os arquivos estão desacoplados (`index.html`, `style.css` e `app.js`), você pode abrir o `index.html` diretamente no seu navegador, ou utilizar uma extensão como o *Live Server* no VS Code.
-4. Para acessar a modelagem de dados, abra o arquivo `/powerbi/dashboard.pbix` no seu Power BI Desktop.
+- **Linguagem de Banco:** T-SQL (Stored Procedures, controle de transações e função `SCOPE_IDENTITY()`).
+- **Analytics & BI:** Microsoft Power BI Service (DAX, Power Query M).
 
 ---
 

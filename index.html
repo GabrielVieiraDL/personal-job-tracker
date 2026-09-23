@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal JobTracker</title>
-        <link rel="stylesheet" href="style.css">
+    <title>Personal JobTracker - Template Visual Desktop</title>
+        <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -12,7 +13,7 @@
     <!-- ================== HEADER FIXO ================== -->
     <header class="top-navbar">
         <div class="nav-logo">
-            <img src="file:///C:/Users/gabri/.gemini/antigravity/brain/34cb92e4-eb17-4ec2-b3b2-4bb1195bc404/.user_uploaded/media_1790001483034.png" alt="Logotipo JobTracker">
+            <img src="logo.png" alt="Logotipo JobTracker">
             <span class="nav-title">PERSONAL JOBTRACKER</span>
         </div>
         
@@ -117,15 +118,17 @@
                     </select>
                 </div>
 
+                
+
                 <div class="form-group">
-                    <label>URL do Site ou Vaga <span class="asterisk">*</span></label>
-                    <input type="url" id="urlSite" placeholder="Link da vaga ou site da empresa" required>
+                    <label>Link da Vaga <span class="asterisk">*</span></label>
+                    <input type="url" id="urlSite" placeholder="Cole o link da vaga ou site da empresa" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Cargo / Vaga <span class="asterisk">*</span></label>
+                    <label>Cargo <span class="asterisk">*</span></label>
                     <select id="vaga" required>
-                        <option value="">Selecione a Vaga...</option>
+                        <option value="">Selecione o Cargo...</option>
                         <option value="1" title="SQL, Excel, Power BI, Python básico">Analista de Dados - Júnior</option>
                         <option value="2" title="SQL Avançado (CTEs, Window Functions), Python (Pandas/PySpark), Power BI Avançado, Modelagem de Dados, Git">Analista de Dados - Pleno</option>
                         <option value="3" title="SQL Básico/Intermediário, Power BI (DAX e Power Query), Excel Avançado, Lógica de Negócios">Analista de BI - Júnior</option>
@@ -142,8 +145,6 @@
                         <option value="1">Aplicado</option>
                         <option value="2">Entrevista</option>
                         <option value="3">Teste Técnico</option>
-                        <option value="4">Proposta</option>
-                        <option value="5">Rejeitado</option>
                     </select>
                 </div>
 
