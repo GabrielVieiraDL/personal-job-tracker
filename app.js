@@ -5,6 +5,7 @@
 
         // Variáveis Globais de Estado (Filtros e Paginação)
         let todasVagas = [];
+let cacheVagasValido = false;
         let vagasFiltradas = [];
         let paginaAtual = 1;
         const ITENS_POR_PAGINA = 9;
@@ -36,9 +37,11 @@
             document.getElementById('tab-' + abaDestino).classList.add('active');
             document.getElementById('view-' + abaDestino).classList.add('active');
 
-            // 3. Atualiza os dados apenas quando for a aba de processos
+            // 3. Verifica o Cache
             if(abaDestino === 'ativas') {
-                carregarVagas();
+                if (!cacheVagasValido) {
+                    carregarVagas();
+                }
             }
         }
 
@@ -179,6 +182,7 @@
                 if(!response.ok) throw new Error("Erro ao buscar vagas");
                 
                 todasVagas = await response.json();
+                cacheVagasValido = true;
 
                 // Ordena por data (mais recentes primeiro)
                 todasVagas.sort((a, b) => {
@@ -311,6 +315,7 @@
 
                 notifEl.style.color = '#10b981';
                 notifEl.innerText = '✓ Status atualizado!';
+                cacheVagasValido = false;
                 
             } catch (error) {
                 notifEl.style.color = '#ef4444';
@@ -320,3 +325,18 @@
                 setTimeout(() => notifEl.style.display = 'none', 3000);
             }
         }
+
+// EAGER LOADING
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(async () => {
+        if (!cacheVagasValido) {
+            try {
+                const response = await fetch(URL_GET_VAGAS);
+                if(response.ok) {
+                    todasVagas = await response.json();
+                    cacheVagasValido = true;
+                }
+            } catch(e) {}
+        }
+    }, 2000);
+});
