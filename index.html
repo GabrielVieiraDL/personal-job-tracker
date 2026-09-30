@@ -1,630 +1,237 @@
 <!DOCTYPE html>
-
-<html class="dark scroll-smooth" lang="pt-BR"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="web_standard" name="shell-type"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-
-<link rel="stylesheet" href="./dist/output.css" />
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal JobTracker</title>
+        <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
 
 </head>
-<body class="bg-[#0B1120] text-[#F8FAFC] font-body antialiased selection:bg-[#D946EF]/20 selection:text-[#94A3B8]">
-<!-- TOP BAR NAVIGATION -->
-<header aria-label="Cabeçalho Principal" class="fixed top-0 left-0 right-0 z-50 bg-[#160b24]/75 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20">
-<div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-<a class="flex items-center gap-2 group" href="#">
-<span class="font-mono text-xs font-bold text-[#94A3B8] group-hover:text-[#D946EF] tracking-widest bg-[#0B8793]/10 group-hover:bg-[#D946EF]/15 px-2.5 py-1 rounded border border-[#0B8793]/30 group-hover:border-[#D946EF]/50 shadow-[0_0_12px_rgba(11,135,147,0.25)] group-hover:shadow-[0_0_20px_rgba(217,70,239,0.6)] transition-all duration-300">GV</span>
-<span class="font-mono text-xs text-white/40">//</span>
-<span class="font-mono text-xs text-[#CBD5E1] tracking-wider uppercase font-semibold">Data Analytics</span>
-</a>
-<nav class="hidden lg:flex items-center gap-1" aria-label="Navegação Principal">
-<a class="px-3.5 py-1.5 text-xs uppercase tracking-wider font-mono text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors" href="#sobre">Sobre</a>
-<a class="px-3.5 py-1.5 text-xs uppercase tracking-wider font-mono text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors" href="#stack">Stack</a>
-<a class="px-3.5 py-1.5 text-xs uppercase tracking-wider font-mono text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors" href="#projetos">Projetos</a>
-<a class="px-3.5 py-1.5 text-xs uppercase tracking-wider font-mono text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors" href="#formacao">Formação</a>
-<a class="px-3.5 py-1.5 text-xs uppercase tracking-wider font-mono text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors" href="#contato">Contato</a>
-</nav>
-<div class="flex items-center gap-4">
-<a class="btn-primary" aria-label="Ver Projetos" href="#projetos">
-          Ver Projetos
-        </a>
-</div>
-</div>
-</header>
-<main class="w-full min-h-screen">
-<!-- 1. HERO SECTION WITH EXACT GRADIENT (#360033 to #0B8793) AND ORGANIC SVG WAVE -->
-<section class="relative w-full pt-28 lg:pt-36 overflow-hidden" style="background: linear-gradient(90deg, #360033 0%, #0B8793 100%);">
-<!-- Ambient subtle light accents -->
-<div class="absolute inset-0 bg-radial-gradient from-white/5 to-transparent pointer-events-none opacity-40"></div>
-<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-start relative z-10 pb-16 lg:pb-24">
-<!-- Top Status Pill & Capability Badges -->
-<div class="flex flex-wrap items-center gap-2.5 mb-8">
-<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#334155] backdrop-blur-md shadow-[0_0_15px_rgba(34,197,94,0.25)]">
-<span class="relative flex h-2 w-2">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-[#22C55E]"></span>
-</span>
-<span class="font-mono text-[11px] text-[#D946EF] uppercase tracking-widest font-bold">Disponível para novas oportunidades</span>
-</div>
+<body>
 
+    <!-- ================== HEADER FIXO ================== -->
+    <header class="top-navbar">
+        <div class="nav-logo">
+            <img src="logo.png" alt="Logotipo JobTracker">
+            <span class="nav-title">PERSONAL JOBTRACKER</span>
+        </div>
+        
+        <button id="themeToggle" class="theme-toggle-btn" onclick="alternarTema()">
+            ☀️ Modo Claro
+        </button>
+    </header>
 
+    <div class="tracker-bg">
+        <div class="grid"></div>
 
-</div>
-<!-- Title in strong visual prominence matching the GitHub banner identity -->
-<h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#F8FAFC] mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
-          Gabriel Vieira
-        </h1>
-<!-- Subtitle with highlighted Analytics Engineer -->
-<h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#F8FAFC]/95 mb-6 tracking-tight">
-          Analista de Dados <span class="text-white/40">|</span> <span class="text-[#94A3B8] drop-shadow-[0_0_20px_rgba(217,70,239,0.6)]">Analytics Engineer</span>
-</h2>
-<!-- Executive Pitch -->
-<p class="font-body text-base sm:text-lg lg:text-xl text-[#F8FAFC]/90 max-w-3xl mb-10 leading-relaxed font-normal drop-shadow-sm">
-          Transformo dados complexos em decisões estratégicas. Com apurado Business Sense e mentalidade Data-Driven, desenvolvo análises profundas, dashboards interativos e modelagens dimensionais, unindo governança e Inteligência Artificial para entregar insights de alto valor ao negócio.
-        </p>
-<!-- Call to Action Buttons -->
-<div class="flex flex-wrap items-center gap-4 mb-12">
-<a class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#D946EF] text-[#051424] font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_24px_rgba(217,70,239,0.5)] hover:shadow-[0_0_36px_rgba(217,70,239,0.85)] hover:bg-[#E879F9] transition-all transform hover:-translate-y-0.5" href="#projetos">
-<span>Projetos</span>
-<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
-<a class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-black/40 border border-[#D946EF]/60 text-[#94A3B8] font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#1E293B] transition-all shadow-[0_0_20px_rgba(217,70,239,0.25)] backdrop-blur-md transform hover:-translate-y-0.5" href="#contato">
-<span class="material-symbols-outlined text-[18px]">alternate_email</span>
-<span>Contato</span>
-</a>
-<a class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-black/25 border border-white/20 text-[#F8FAFC] hover:text-[#D946EF] hover:border-[#D946EF] hover:shadow-[0_0_15px_rgba(217,70,239,0.3)] font-mono text-xs uppercase tracking-wider transition-all duration-300 backdrop-blur-sm" href="./cv-gabriel-vieira-analytics-pt.pdf" download="CV_Gabriel_Vieira_Analytics.pdf" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[18px]">badge</span>
-<span>Download CV</span>
-</a>
-</div>
-<!-- 3 Highlight Metric/Credential Pills in Hero Banner -->
-<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-<div class="p-4 rounded-xl bg-black/35 backdrop-blur-md border border-white/10 hover:-translate-y-1 hover:border-[#0B8793]/50 hover:bg-gradient-to-br hover:from-[#360033]/15 hover:to-[#0B8793]/15 hover:shadow-[0_0_20px_rgba(11,135,147,0.2)] transition-all flex items-center gap-3 cursor-default">
-<div class="w-10 h-10 rounded-lg bg-[#1E293B] border border-[#334155] flex items-center justify-center shrink-0 text-[#94A3B8]">
-<span class="material-symbols-outlined text-[20px]">query_stats</span>
-</div>
-<div>
-<div class="font-mono text-[10px] text-white/60 uppercase">Data Analytics &amp; BI</div>
-<div class="font-display text-xs sm:text-sm font-semibold text-[#F8FAFC]">SQL &amp; Power BI</div>
-</div>
-</div>
-<div class="p-4 rounded-xl bg-black/35 backdrop-blur-md border border-white/10 hover:-translate-y-1 hover:border-[#0B8793]/50 hover:bg-gradient-to-br hover:from-[#360033]/15 hover:to-[#0B8793]/15 hover:shadow-[0_0_20px_rgba(11,135,147,0.2)] transition-all flex items-center gap-3 cursor-default">
-<div class="w-10 h-10 rounded-lg bg-[#1E293B] border border-[#334155] flex items-center justify-center shrink-0 text-[#94A3B8]">
-<span class="material-symbols-outlined text-[20px]">account_tree</span>
-</div>
-<div>
-<div class="font-mono text-[10px] text-white/60 uppercase">Frameworks</div>
-<div class="font-display text-xs sm:text-sm font-semibold text-[#F8FAFC]">CRISP-DM &amp; ITIL</div>
-</div>
-</div>
-<div class="p-4 rounded-xl bg-black/35 backdrop-blur-md border border-white/10 hover:-translate-y-1 hover:border-[#0B8793]/50 hover:bg-gradient-to-br hover:from-[#360033]/15 hover:to-[#0B8793]/15 hover:shadow-[0_0_20px_rgba(11,135,147,0.2)] transition-all flex items-center gap-3 cursor-default">
-<div class="w-10 h-10 rounded-lg bg-[#1E293B] border border-[#334155] flex items-center justify-center shrink-0 text-[#94A3B8]">
-<span class="material-symbols-outlined text-[20px]">smart_toy</span>
-</div>
-<div>
-<div class="font-mono text-[10px] text-white/60 uppercase">Inteligência Artificial</div>
-<div class="font-display text-xs sm:text-sm font-semibold text-[#F8FAFC]">Vibe Coding &amp; Engenharia de Prompts</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Organic Smooth SVG Wave Divider seamlessly transitioning into Deep Navy (#0B1120) -->
-<div class="w-full overflow-hidden leading-none -mb-[1px]">
-<svg class="relative block w-full h-[65px] sm:h-[80px] lg:h-[95px]" preserveaspectratio="none" viewbox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
-<!-- Layer 1 subtle wave silhouette -->
-<path d="M0,0 C250,60 480,10 720,50 C960,90 1100,30 1200,60 L1200,120 L0,120 Z" fill="#0B1120" fill-opacity="0.45"></path>
-<!-- Layer 2 smooth primary wave -->
-<path d="M0,45 C180,85 420,10 680,65 C940,120 1080,45 1200,75 L1200,120 L0,120 Z" fill="#0B1120"></path>
-</svg>
-</div>
-</section>
-<!-- 2. SECTION SOBRE MIM -->
-<section class="w-full py-20 lg:py-28 bg-[#0B1120] border-b-[1px] border-transparent [border-image:linear-gradient(90deg,rgba(54,0,51,0.5),rgba(11,135,147,0.5))_1]" id="sobre">
-<div class="max-w-7xl mx-auto px-6 lg:px-12">
-<div class="flex flex-col mb-14">
-<div class="flex items-center gap-2 font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2">
-<span>01.</span>
-<span>A Jornada</span>
-</div>
-<h2 class="font-display text-2xl lg:text-3xl text-[#F8FAFC] font-bold">
-            Da Governança de Dados à Engenharia Analítica
-          </h2>
-          <p class="font-body text-sm text-[#94A3B8] max-w-2xl mt-2">
-            A união do pragmatismo operacional e controle rigoroso à modelagem de dados estruturada para impulsionar decisões da diretoria.
-          </p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-<!-- Card 1 -->
-<div class="flex flex-col justify-between p-8 rounded-2xl bg-[#1E293B] border border-[#334155] hover:border-[#334155] transition-all shadow-lg hover:shadow-[0_0_24px_rgba(217,70,239,0.08)]">
-<div>
-<div class="w-12 h-12 rounded-xl bg-[#0B1120] border border-slate-700 flex items-center justify-center text-[#94A3B8] mb-6 shadow-[0_0_16px_rgba(217,70,239,0.2)]">
-<span class="material-symbols-outlined text-[24px]">dataset</span>
-              </div>
-              <div class="font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Fundação &amp; Modelagem</div>
-              <h3 class="font-display text-lg text-[#F8FAFC] font-semibold mb-3">
-                Analytics Engineering &amp; Data Quality
-              </h3>
-              <p class="font-body text-sm text-[#94A3B8] leading-relaxed">
-                Forte background em controle de acesso e segurança da informação, convertendo o rigor e a governança de ambientes corporativos complexos em fundamentos sólidos para a estruturação de data warehouses e pipelines analíticos confiáveis.
-              </p>
-            </div>
-            <div class="pt-6 mt-6 border-t border-slate-700/80 flex items-center gap-2 font-mono text-xs text-[#CBD5E1]">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span>
-              <span>Modelagem Dimensional • Qualidade de Dados • Governança</span>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="flex flex-col justify-between p-8 rounded-2xl bg-[#1E293B] border border-[#334155] hover:border-[#334155] transition-all shadow-lg hover:shadow-[0_0_24px_rgba(217,70,239,0.08)]">
-<div>
-<div class="w-12 h-12 rounded-xl bg-[#0B1120] border border-slate-700 flex items-center justify-center text-[#94A3B8] mb-6 shadow-[0_0_16px_rgba(217,70,239,0.2)]">
-<span class="material-symbols-outlined text-[24px]">psychology</span>
-</div>
-<div class="font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Metodologia &amp; Escala</div>
-              <h3 class="font-display text-lg text-[#F8FAFC] font-semibold mb-3">
-                CRISP-DM &amp; AI-Driven Architecture
-              </h3>
-              <p class="font-body text-sm text-[#94A3B8] leading-relaxed">
-                Aplicação rigorosa da metodologia global CRISP-DM em todo o ciclo de vida dos dados, acelerada por Inteligência Artificial Generativa e modelagem dimensional para transformar fluxos brutos em respostas analíticas acionáveis.
-              </p>
-            </div>
-            <div class="pt-6 mt-6 border-t border-slate-700/80 flex items-center gap-2 font-mono text-xs text-[#CBD5E1]">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span>
-              <span>Ciclo CRISP-DM • AI Generativa • Star Schema</span>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="flex flex-col justify-between p-8 rounded-2xl bg-[#1E293B] border border-[#334155] hover:border-[#334155] transition-all shadow-lg hover:shadow-[0_0_24px_rgba(217,70,239,0.08)]">
-<div>
-<div class="w-12 h-12 rounded-xl bg-[#0B1120] border border-slate-700 flex items-center justify-center text-[#94A3B8] mb-6 shadow-[0_0_16px_rgba(217,70,239,0.2)]">
-<span class="material-symbols-outlined text-[24px]">workspace_premium</span>
-</div>
-<div class="font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Diferencial Executivo</div>
-              <h3 class="font-display text-lg text-[#F8FAFC] font-semibold mb-3">
-                Business Sense &amp; Certificações
-              </h3>
-              <p class="font-body text-sm text-[#94A3B8] leading-relaxed">
-                Forte Business Sense e facilidade de comunicação executiva e técnica, somados à proficiência em Inglês Avançado e foco estratégico nas certificações oficiais Microsoft PL-300 (Power BI) e DP-600 (Fabric Analytics Engineer).
-              </p>
-            </div>
-            <div class="pt-6 mt-6 border-t border-slate-700/80 flex items-center gap-2 font-mono text-xs text-[#CBD5E1]">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span>
-              <span>Inglês Avançado • Microsoft PL-300 &amp; DP-600</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- 3. TECH STACK (3 CARDS ESTILO DASHBOARD: Dark Slate #1E293B, border #334155, rounded-2xl, Neon Cyan icons with glow) -->
-<section class="w-full py-20 lg:py-28 bg-[#0B1120] border-b-[1px] border-transparent [border-image:linear-gradient(90deg,rgba(54,0,51,0.5),rgba(11,135,147,0.5))_1]" id="stack">
-<div class="max-w-7xl mx-auto px-6 lg:px-12">
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-<div>
-<div class="flex items-center gap-2 font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2">
-<span>02.</span>
-<span>Tech Stack</span>
-</div>
-<h2 class="font-display text-2xl lg:text-3xl text-[#F8FAFC] font-bold">
-              Competências por Domínio de Valor
-            </h2>
-</div>
-<p class="font-body text-xs lg:text-sm text-[#94A3B8] max-w-md">
-            Estrutura técnica dashboard-style unindo engenharia em nuvem resiliente, aceleração com IA e governança analítica orientada a decisões executivas.
-          </p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<!-- Card 1: Analytics Engineering & BI -->
-<div class="card-glass group">
+        <!-- MAPA TÁTICO ESTÁTICO (LINHA VERTICAL À ESQUERDA) -->
+        <div class="radar-map-container">
+            <svg class="radar-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMinYMid slice">
+                
+                <g transform="translate(80, 540)">
+                    <circle cx="0" cy="0" r="150" fill="none" stroke="var(--tracker-glow)" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4"/>
+                    <circle cx="0" cy="0" r="350" fill="none" stroke="var(--tracker-glow)" stroke-width="1" stroke-dasharray="2 12" opacity="0.2"/>
+                    
+                    <line x1="0" y1="-1000" x2="0" y2="1000" stroke="var(--tracker-glow)" stroke-width="1" opacity="0.3" stroke-dasharray="10 10" />
+                    <line x1="-1000" y1="0" x2="2000" y2="0" stroke="var(--tracker-glow)" stroke-width="1" opacity="0.3" stroke-dasharray="10 10" />
 
-<div>
-<div class="flex items-center justify-between mb-6">
-<div class="icon-box group-hover:shadow-[0_0_30px_rgba(11,135,147,0.4)]">
-<svg class="w-7 h-7 text-[#94A3B8]" aria-hidden="true" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
-</svg>
-</div>
-<span class="tag-highlight">Business Analytics</span>
-</div>
-<h3 class="font-display text-xl text-[#F8FAFC] font-bold mb-3">
-Analytics Engineering &amp; BI
-</h3>
-<p class="font-body text-sm text-[#94A3B8] leading-relaxed mb-6">
-Desenvolvimento de modelos dimensionais robustos no Azure SQL Database e relatórios avançados no Power BI com Power Query, DAX e Linguagem M.
-</p>
-<div class="flex flex-wrap gap-2 mb-6">
-<span class="tag-muted">#PowerBI</span>
-<span class="tag-muted">#DAX</span>
-<span class="tag-muted">#StarSchema</span>
-<span class="tag-muted">#ETL</span>
-</div>
-</div>
-<div class="pt-4 border-t border-slate-700/80 flex items-center justify-between text-xs font-mono text-[#94A3B8]">
-<span>Métricas Analíticas</span>
-<span class="text-[#94A3B8] flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#D946EF] animate-pulse"></span> Ativo</span>
-</div>
-</div>
+                    <!-- Caminho de Conexão Vertical -->
+                    <path d="M 0,-280 L 15,-140 L 0,0 L 15,140 L 0,280" fill="none" stroke="var(--tracker-glow)" stroke-width="1.5" opacity="0.6" stroke-dasharray="5 5"/>
 
-<!-- Card 2: Cloud, Infraestrutura & CI/CD -->
-<div class="card-glass group">
+                    <g transform="translate(0, -280)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 0s"/>
+                        <circle cx="0" cy="0" r="6" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">PAULISTA</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">TI HOTZONE</text>
+                    </g>
 
-<div>
-<div class="flex items-center justify-between mb-6">
-<div class="icon-box group-hover:shadow-[0_0_30px_rgba(11,135,147,0.4)]">
-<svg class="w-7 h-7 text-[#94A3B8]" aria-hidden="true" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-<path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
-<path d="M4 19v1a2 2 0 002 2h12a2 2 0 002-2v-1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
-</svg>
-</div>
-<span class="tag-highlight">Cloud Engine</span>
-</div>
-<h3 class="font-display text-xl text-[#F8FAFC] font-bold mb-3">
-Cloud, Infraestrutura &amp; CI/CD
-</h3>
-<p class="font-body text-sm text-[#94A3B8] leading-relaxed mb-6">
-Sustentação de ambientes críticos (Linux, SAP), orquestração de pipelines transacionais assíncronos via Power Automate e deploy contínuo com Azure Static Web Apps.
-</p>
-<div class="flex flex-wrap gap-2 mb-6">
-<span class="tag-muted">#AzureSQL</span>
-<span class="tag-muted">#PowerAutomate</span>
-<span class="tag-muted">#GitHubActions</span>
-<span class="tag-muted">#Linux</span>
-</div>
-</div>
-<div class="pt-4 border-t border-slate-700/80 flex items-center justify-between text-xs font-mono text-[#94A3B8]">
-<span>Pipeline Integration</span>
-<span class="text-[#94A3B8] flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#D946EF] animate-pulse"></span> Deploy Contínuo</span>
-</div>
-</div>
+                    <g transform="translate(15, -140)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 0.5s"/>
+                        <circle cx="0" cy="0" r="7" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">FARIA LIMA</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">FINTECH HUB</text>
+                    </g>
 
-<!-- Card 3: Inteligência Artificial & Governança (Destaque Central) -->
-<div class="card-glass group">
+                    <g transform="translate(0, 0)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 1.0s"/>
+                        <circle cx="0" cy="0" r="6" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">BERRINI</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">TECH CORPORATE</text>
+                    </g>
 
-<div>
-<div class="flex items-center justify-between mb-6">
-<div class="icon-box group-hover:shadow-[0_0_36px_rgba(11,135,147,0.6)]">
-<svg class="w-7 h-7 text-[#94A3B8]" aria-hidden="true" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-<path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
-</svg>
-</div>
-<span class="tag-highlight">AI-Driven</span>
-</div>
-<h3 class="font-display text-xl text-[#F8FAFC] font-bold mb-3">
-Inteligência Artificial &amp; GenAI
-</h3>
-<p class="font-body text-sm text-[#94A3B8] leading-relaxed mb-6">
-Utilização de IA Agêntica e Vibe Coding para desenvolvimento estrutural e automação de fluxos, aliado à rigorosa Governança de Dados e metodologias (CRISP-DM, ITIL).
-</p>
-<div class="flex flex-wrap gap-2 mb-6">
-<span class="tag-muted">#IA-Agêntica</span>
-<span class="tag-muted">#PromptEngineering</span>
-<span class="tag-muted">#CRISP-DM</span>
-<span class="tag-muted">#DataGovernance</span>
-</div>
-</div>
-<div class="pt-4 border-t border-slate-700/80 flex items-center justify-between text-xs font-mono text-[#94A3B8]">
-<span>Metodologia &amp; Aceleração</span>
-<span class="text-[#94A3B8] font-semibold">10x Insights Flow</span>
-</div>
-</div>
-</div>
-</section>
-<!-- 4. PROJETO DE DESTAQUE: PERSONAL JOBTRACKER -->
-<section class="w-full py-20 lg:py-28 bg-[#0B1120] border-b-[1px] border-transparent [border-image:linear-gradient(90deg,rgba(54,0,51,0.5),rgba(11,135,147,0.5))_1]" id="projetos">
-<div class="max-w-7xl mx-auto px-6 lg:px-12">
-<div class="flex items-center gap-2 font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2">
-<span>03.</span>
-<span>Caso de Destaque • Engenharia Ponta a Ponta</span>
-</div>
-<div class="mt-8 rounded-2xl bg-[#1E293B] border border-[#334155] shadow-2xl p-6 lg:p-10">
-<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
-<div>
-<div class="flex flex-wrap items-center gap-2 mb-3">
-<span class="px-3 py-1 rounded-full bg-[#0B1120] border border-[#334155] text-[#94A3B8] font-mono text-xs font-semibold uppercase hover:border-[#D946EF]/50 transition-colors">Power BI</span>
-<span class="px-3 py-1 rounded-full bg-[#0B1120] border border-[#334155] text-[#94A3B8] font-mono text-xs font-semibold uppercase hover:border-[#D946EF]/50 transition-colors">Azure SQL</span>
-<span class="px-3 py-1 rounded-full bg-[#0B1120] border border-[#334155] text-[#94A3B8] font-mono text-xs font-semibold uppercase hover:border-[#D946EF]/50 transition-colors">Power Automate</span>
-<span class="px-3 py-1 rounded-full bg-[#0B1120] border border-[#334155] text-[#94A3B8] font-mono text-xs font-semibold uppercase hover:border-[#D946EF]/50 transition-colors">Serverless & CI/CD</span>
-<span class="px-3 py-1 rounded-full bg-[#0B1120] border border-[#334155] text-[#94A3B8] font-mono text-xs font-semibold uppercase hover:border-[#D946EF]/50 transition-colors">Static Web Apps</span>
-</div>
-<h3 class="font-display text-2xl lg:text-3xl text-[#F8FAFC] font-bold">
-                Personal JobTracker — Ecossistema Analítico End-to-End
-              </h3>
-</div>
-<div class="flex flex-wrap items-center gap-3">
-<a class="btn-secondary" href="https://github.com/GabrielVieiraDL/personal-job-tracker" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[18px]">code</span>
-<span>Ver Repositório no GitHub</span>
-</a>
+                    <g transform="translate(15, 140)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 1.5s"/>
+                        <circle cx="0" cy="0" r="7" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">MORUMBI</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">TECH HUB</text>
+                    </g>
 
-</div>
-</div>
-<!-- Descrição solicitada -->
-<div class="p-6 rounded-xl bg-[#0B1120] border border-[#334155] mb-10">
-<div class="flex items-center gap-2 font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2 font-semibold">
-<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
-<span>Arquitetura Cloud &amp; Resolução de Negócio</span>
-</div>
-<p class="font-body text-sm lg:text-base text-[#CBD5E1] leading-relaxed">
-              Desenvolvimento end-to-end de uma aplicação Serverless (Single Page Application) na nuvem. Utilizo o Microsoft Power Automate como ponte transacional, inserindo dados via Stored Procedures em um Azure SQL Database modelado em Star Schema. O frontend é hospedado no Azure Static Web Apps com deploy contínuo (CI/CD) via GitHub Actions, e o consumo de métricas ocorre de forma autônoma via dashboards embutidos do Power BI.
-            </p>
-</div>
-<!-- Lineage Diagram Flow -->
-<div class="mb-10">
-<div class="flex items-center justify-between mb-4">
-<span class="font-mono text-xs text-[#94A3B8] uppercase tracking-wider font-semibold">Fluxo de Linhagem de Dados (Lineage DAG)</span>
-<span class="font-mono text-xs text-[#D946EF] font-bold">STATUS: ONLINE // ZERO PLANILHAS</span>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-<!-- Stage 1 -->
-<div class="p-4 rounded-xl bg-[#0B1120] border border-[#334155] hover:border-[#D946EF]/50 transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="font-mono text-xs font-bold text-[#94A3B8]">01. INGESTÃO</span>
-<span class="material-symbols-outlined text-[#94A3B8] text-[20px]">webhook</span>
-</div>
-<h4 class="font-display text-sm text-[#F8FAFC] font-semibold mb-1">App Customizado &amp; Webhook</h4>
-<p class="font-body text-xs text-[#94A3B8] mb-3">Captura de dados transacionais no Front-end (JS) e orquestração assíncrona orientada a eventos via Microsoft Power Automate.</p>
-<div class="font-mono text-[11px] text-[#94A3B8] bg-[#1E293B] px-2 py-1 rounded border border-[#334155]">
-                  API-First • Power Automate
-                </div>
-</div>
-<!-- Stage 2 -->
-<div class="p-4 rounded-xl bg-[#0B1120] border border-[#334155] hover:border-[#D946EF]/50 transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="font-mono text-xs font-bold text-[#94A3B8]">02. ARMAZENAMENTO &amp; MODELAGEM</span>
-<span class="material-symbols-outlined text-[#94A3B8] text-[20px]">database</span>
-</div>
-<h4 class="font-display text-sm text-[#F8FAFC] font-semibold mb-1">Azure SQL (Star Schema)</h4>
-<p class="font-body text-xs text-[#94A3B8] mb-3">Repositório relacional central na nuvem. Os dados são estruturados fisicamente em tabelas Fato e Dimensões, garantindo integridade referencial.</p>
-<div class="font-mono text-[11px] text-[#94A3B8] bg-[#1E293B] px-2 py-1 rounded border border-[#334155]">
-                  Azure SQL • Modelo Estrela
-                </div>
-</div>
-<!-- Stage 3 -->
-<div class="p-4 rounded-xl bg-[#0B1120] border border-[#334155] hover:border-[#D946EF]/50 transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="font-mono text-xs font-bold text-[#94A3B8]">03. TRANSFORMAÇÃO (ETL)</span>
-<span class="material-symbols-outlined text-[#94A3B8] text-[20px]">account_tree</span>
-</div>
-<h4 class="font-display text-sm text-[#F8FAFC] font-semibold mb-1">Microsoft Power Query</h4>
-<p class="font-body text-xs text-[#94A3B8] mb-3">Conexão direta com a nuvem para extração, limpeza e tratamento avançado de dados (Linguagem M), utilizando Query Folding para otimizar a performance na fonte.</p>
-<div class="font-mono text-[11px] text-[#94A3B8] bg-[#1E293B] px-2 py-1 rounded border border-[#334155]">
-                  Power Query • ETL • Linguagem M
-                </div>
-</div>
-<!-- Stage 4 -->
-<div class="p-4 rounded-xl bg-[#0B1120] border border-[#334155] hover:border-[#D946EF]/50 transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="font-mono text-xs font-bold text-[#94A3B8]">04. CONSUMO ANALÍTICO</span>
-<span class="material-symbols-outlined text-[#94A3B8] text-[20px]">query_stats</span>
-</div>
-<h4 class="font-display text-sm text-[#F8FAFC] font-semibold mb-1">Power BI &amp; DAX</h4>
-<p class="font-body text-xs text-[#94A3B8] mb-3">Camada semântica processada em memória. Utiliza DAX para cálculos complexos e Time Intelligence, alimentando painéis executivos com métricas de alto impacto.</p>
-<div class="font-mono text-[11px] text-[#94A3B8] bg-[#1E293B] px-2 py-1 rounded border border-[#334155]">
-                  Power BI Service • DAX Avançado
-                </div>
-</div>
-</div>
-</div>
-<!-- Embed Real Dashboard Screenshot in Executive Power BI Frame -->
-<div class="rounded-xl bg-[#0B1120] border border-[#334155] p-3 lg:p-5 shadow-2xl overflow-hidden">
-<div class="flex flex-wrap items-center justify-between pb-3 mb-3 border-b border-slate-700/80 gap-3">
-<div class="flex items-center gap-3">
-<div class="flex items-center gap-1.5">
-<span class="w-3 h-3 rounded-full bg-[#ef4444]"></span>
-<span class="w-3 h-3 rounded-full bg-[#f59e0b]"></span>
-<span class="w-3 h-3 rounded-full bg-[#10b981]"></span>
-</div>
-<span class="font-mono text-xs text-[#F8FAFC] font-semibold">PERSONAL JOBTRACKER // EXECUTIVE BI VIEW</span>
-</div>
-<div class="flex items-center gap-3">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1E293B] border border-[#334155] text-[#94A3B8] font-mono text-[11px]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#D946EF] animate-pulse"></span>
-                  Azure SQL Live Sync
-                </span>
-<span class="font-mono text-xs text-[#94A3B8] hidden sm:inline">Data Analyst | Gabriel Vieira</span>
-</div>
-</div>
-<div class="relative w-full rounded-lg bg-black/40 p-2 border border-slate-700">
-<div class="flex flex-col gap-6">
-    <div class="w-full relative rounded-lg overflow-hidden border border-slate-700 group">
-        <img alt="Tela de Cadastro" class="w-full h-auto rounded-lg object-cover hover:scale-[1.01] transition-transform duration-500" src="./tela-cadastro-personal-jobtracker.png"/>
-        <div class="absolute bottom-3 right-3 bg-[#0B1120]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[#334155] flex items-center gap-2 text-xs font-mono text-[#94A3B8] shadow-lg">
-            <span class="material-symbols-outlined text-[16px]">app_registration</span>
-            <span>01. Tela de Cadastro</span>
+                    <g transform="translate(0, 280)">
+                        <circle cx="0" cy="0" r="1" fill="none" stroke="var(--primary-btn)" class="pulse-ring" style="animation-delay: 2.0s"/>
+                        <circle cx="0" cy="0" r="6" fill="var(--primary-btn)"/>
+                        <text x="15" y="-5" fill="var(--primary-btn)" font-family="monospace" font-size="16" font-weight="bold" letter-spacing="1">REMOTE</text>
+                        <text x="15" y="12" fill="var(--text-color)" font-family="monospace" font-size="11" opacity="0.7">GLOBAL NETWORK</text>
+                    </g>
+                </g>
+            </svg>
         </div>
     </div>
+
+    <!-- ABAS DE NAVEGAÇÃO -->
+    <div class="tabs-container">
+        <button class="tab-btn active" id="tab-nova" onclick="alternarAba('nova')">Nova Candidatura</button>
+        <button class="tab-btn" id="tab-ativas" onclick="alternarAba('ativas')">Processos Ativos</button>
+        <button class="tab-btn" id="tab-dashboard" onclick="alternarAba('dashboard')">Dashboard</button>
+    </div>
+
+    <!-- VIEW 1: NOVA CANDIDATURA -->
+    <div id="view-nova" class="view-section active">
+        <div class="form-container">
+            <div class="hud-corners"></div>
+            <div class="header-section">
+                <h2>CADASTRAR VAGA</h2>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Data da Candidatura <span class="asterisk">*</span></label>
+                    <input type="date" id="data" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Empresa <span class="asterisk">*</span></label>
+                    <input type="text" id="empresa" placeholder="Digite o nome da empresa..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Setor <span class="asterisk">*</span></label>
+                    <input type="text" id="setor" placeholder="Ex: Tecnologia, Financeiro, Varejo" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tamanho da Empresa <span class="asterisk">*</span></label>
+                    <select id="tamanho" required>
+                        <option value="">Selecione o Tamanho...</option>
+                        <option value="Pequena">Pequena</option>
+                        <option value="Média">Média</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+                </div>
+
+                
+
+                <div class="form-group">
+                    <label>Link da Vaga <span class="asterisk">*</span></label>
+                    <input type="url" id="urlSite" placeholder="Cole o link da vaga ou site da empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cargo <span class="asterisk">*</span></label>
+                    <select id="vaga" required>
+                        <option value="">Selecione o Cargo...</option>
+                        <option value="1" title="SQL, Excel, Power BI, Python básico">Analista de Dados - Júnior</option>
+                        <option value="2" title="SQL Avançado (CTEs, Window Functions), Python (Pandas/PySpark), Power BI Avançado, Modelagem de Dados, Git">Analista de Dados - Pleno</option>
+                        <option value="3" title="SQL Básico/Intermediário, Power BI (DAX e Power Query), Excel Avançado, Lógica de Negócios">Analista de BI - Júnior</option>
+                        <option value="4" title="SQL Avançado, DAX, Modelagem Dimensional, ETL">Analista de BI - Pleno</option>
+                        <option value="5" title="Python, SQL, Azure, Pipelines">Engenheiro de Dados - Júnior</option>
+                        <option value="6" title="Python, SQL Avançado, Spark, Azure Data Factory/Databricks, Modelagem Dimensional, Orquestração (Airflow)">Engenheiro de Dados - Pleno</option>
+                        <option value="7" title="SQL, dbt intermediário, Git, Data Warehousing, Python">Analytics Engineer - Júnior</option>
+                        <option value="8" title="SQL avançado, dbt avançado, CI/CD, Arquitetura de Dados, Orquestração">Analytics Engineer - Pleno</option>
+                        <option value="9" title="Inglês Avançado, Liderança, Team Work, Inovação">Trainee</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Status do Processo <span class="asterisk">*</span></label>
+                    <select id="status" required>
+                        <option value="">Selecione o Status...</option>
+                        <option value="1">Aplicado</option>
+                        <option value="2">Entrevista</option>
+                        <option value="3">Teste Técnico</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Plataforma de Origem <span class="asterisk">*</span></label>
+                    <select id="plataforma" required>
+                        <option value="">Selecione a Plataforma...</option>
+                        <option value="1">LinkedIn</option>
+                        <option value="2">Gupy</option>
+                        <option value="3">Site da Empresa</option>
+                        <option value="4">Indicação</option>
+                        <option value="5">Infojobs</option>
+                        <option value="6">Catho</option>
+                        <option value="7" title="SQL, dbt intermediário, Git, Data Warehousing, Python">Analytics Engineer - Júnior</option>
+                        <option value="8" title="SQL avançado, dbt avançado, CI/CD, Arquitetura de Dados, Orquestração">Analytics Engineer - Pleno</option>
+                        <option value="9" title="Inglês Avançado, Liderança, Team Work, Inovação">Trainee</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Pretensão Salarial (R$) <span class="optional-tag">(Opcional)</span></label>
+                    <input type="number" id="pretensao" placeholder="Ex: 15000" step="0.01">
+                </div>
+
+                <div class="form-group full-width">
+                    <button id="btnSalvar" onclick="salvarCandidatura()">Salvar Candidatura</button>
+                </div>
+
+                <div id="notification" class="notification full-width"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: PROCESSOS ATIVOS -->
+    <div id="view-ativas" class="view-section">
+        
+        <!-- BARRA DE CONTROLES: FILTROS E PAGINAÇÃO -->
+        <div class="controls-bar" id="controls-bar" style="display: none;">
+            <div class="filter-group">
+                <input type="text" id="filtro-empresa" placeholder="Buscar por empresa..." oninput="aplicarFiltros()">
+                <select id="filtro-status" onchange="aplicarFiltros()">
+                    <option value="">Todos os Status</option>
+                    <option value="1">Aplicado</option>
+                    <option value="2">Entrevista</option>
+                    <option value="3">Teste Técnico</option>
+                    <option value="4">Proposta</option>
+                    <option value="5">Rejeitado</option>
+                </select>
+            </div>
+            <div class="pagination-controls">
+                <button class="btn-page" id="btn-prev" onclick="mudarPagina(-1)">Anterior</button>
+                <span id="page-info">Página 1 de 1</span>
+                <button class="btn-page" id="btn-next" onclick="mudarPagina(1)">Próxima</button>
+            </div>
+        </div>
+
+        <div id="loading-spinner" style="text-align:center; padding: 40px; display:none;">
+            <p style="font-weight:bold; color:var(--primary-btn); font-size:1.1rem; letter-spacing:1px;">SINCRONIZANDO DADOS...</p>
+        </div>
+
+        <div class="cards-grid" id="cards-container">
+            <!-- Cards gerados via JS serão injetados aqui -->
+        </div>
+    </div>
+
     
-    <div class="w-full relative rounded-lg overflow-hidden border border-slate-700 group">
-        <img alt="Processos Ativos" class="w-full h-auto rounded-lg object-cover hover:scale-[1.01] transition-transform duration-500" src="./tela-processos-ativos.png"/>
-        <div class="absolute bottom-3 right-3 bg-[#0B1120]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[#334155] flex items-center gap-2 text-xs font-mono text-[#94A3B8] shadow-lg">
-            <span class="material-symbols-outlined text-[16px]">list_alt</span>
-            <span>02. Processos Ativos</span>
+    <!-- VIEW 3: DASHBOARD POWER BI -->
+    <div id="view-dashboard" class="view-section">
+        <div class="iframe-wrapper">
+            <iframe title="JobTracker" src="https://app.powerbi.com/view?r=eyJrIjoiZjVhZWNiYmEtMzk0Ni00Y2NkLTk0YjgtNmFiY2I4NGQwZmVmIiwidCI6IjM4YjNlOTY0LWZhNzItNDhjZC05MTk5LTI1ZTJkODQzYjMzNiJ9&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
         </div>
     </div>
 
-    <div class="w-full relative rounded-lg overflow-hidden border border-slate-700 group">
-        <img alt="Personal JobTracker Dashboard" class="w-full h-auto rounded-lg object-cover hover:scale-[1.01] transition-transform duration-500" src="./tela-dashboard.png"/>
-        <div class="absolute bottom-3 right-3 bg-[#0B1120]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[#334155] flex items-center gap-2 text-xs font-mono text-[#94A3B8] shadow-lg">
-            <span class="material-symbols-outlined text-[16px]">analytics</span>
-            <span>03. Power BI Dashboard</span>
+    <!-- FOOTER PROFISSIONAL -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <span class="footer-title">Personal JobTracker</span>
+            <span class="footer-separator">•</span>
+            <span class="footer-signature">Desenvolvido por Gabriel Vieira</span>
         </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- 5. FORMAÇÃO ACADÊMICA & CERTIFICAÇÕES -->
-<section class="w-full py-20 lg:py-28 bg-[#0B1120] border-b-[1px] border-transparent [border-image:linear-gradient(90deg,rgba(54,0,51,0.5),rgba(11,135,147,0.5))_1]" id="formacao">
-<div class="max-w-7xl mx-auto px-6 lg:px-12">
-<div class="flex items-center gap-2 font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-2">
-<span>04.</span>
-<span>Especialização Contínua</span>
-</div>
-<h2 class="font-display text-2xl lg:text-3xl text-[#F8FAFC] font-bold mb-14">
-          Formação Acadêmica &amp; Certificações
-        </h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-<!-- Coluna 1: Formação Acadêmica -->
-<div class="flex flex-col gap-6">
-<div class="flex items-center gap-3 pb-2">
-<span class="material-symbols-outlined text-[#94A3B8] text-[24px]">school</span>
-<h3 class="font-display text-lg text-[#F8FAFC] font-bold">Formação Acadêmica</h3>
-</div>
-<div class="p-8 rounded-2xl bg-[#1E293B] border border-[#334155] hover:border-slate-500 transition-all flex flex-col shadow-lg h-fit">
-<div>
-<div class="flex items-center justify-between mb-3">
-<span class="font-mono text-xs text-[#94A3B8] uppercase font-semibold">Graduação Tecnológica</span>
-<span class="font-mono text-xs text-[#94A3B8]">Conclusão: 12/2022</span>
-</div>
-<h4 class="font-display text-xl text-[#F8FAFC] font-bold mb-1">
-                  Análise e Desenvolvimento de Sistemas
-                </h4>
-<div class="font-body text-sm text-[#94A3B8] font-medium mb-4">
-                  São Paulo Tech School (SPTECH)
-                </div>
-<p class="font-body text-sm text-[#94A3B8] leading-relaxed">
-                  Formação estruturada com ênfase prática em engenharia de software, modelagem de dados relacional e dimensional, algoritmos de alta eficiência, arquitetura de sistemas corporativos e governança tecnológica.
-                </p>
-</div>
+    </footer>
 
-</div>
-</div>
-<!-- Coluna 2: Treinamentos e Certificações -->
-<div class="flex flex-col gap-6">
-<div class="flex items-center gap-3 pb-2">
-<span class="material-symbols-outlined text-[#94A3B8] text-[24px]">military_tech</span>
-<h3 class="font-display text-lg text-[#F8FAFC] font-bold">Especializações &amp; Badges Oficiais</h3>
-</div>
-<!-- Bootcamp Generation Brasil -->
-<div class="p-6 rounded-2xl bg-[#1E293B] border border-[#334155] hover:border-slate-500 transition-all shadow-lg">
-<div class="flex items-center justify-between mb-3">
-<span class="font-mono text-xs text-[#94A3B8] uppercase bg-[#1E293B] px-2.5 py-0.5 rounded border border-[#334155] font-semibold">Bootcamp Intensivo • 480h</span>
-<span class="font-mono text-xs text-[#94A3B8]">Conclusão: 10/2026</span>
-</div>
-<h4 class="font-display text-base text-[#F8FAFC] font-bold mb-1">
-                Formação Profissional em Análise de Dados
-              </h4>
-<div class="font-body text-xs text-[#94A3B8] font-medium mb-3">
-                Generation Brasil
-              </div>
-<p class="font-body text-xs text-[#94A3B8] leading-relaxed">
-                Bootcamp de Análise de Dados em formato de imersão integral de 480 horas, focado na resolução de desafios reais de negócios e no desenvolvimento de fortes capacidades analíticas. A formação engloba o ciclo completo dos dados, desde a extração e modelagem estrutural com SQL e Excel, até a criação de painéis interativos em PowerBI. O programa também integra o uso estratégico de Inteligência Artificial (IA) para acelerar insights, combinando habilidades técnicas com resolução de problemas e comunicação eficaz de métricas para a tomada de decisão.
-              </p>
-<div class="mt-4 flex flex-wrap items-center gap-1.5 pt-3 border-t border-slate-700/80">
-<span class="px-2 py-0.5 rounded bg-[#0B1120] text-[#94A3B8] font-mono text-[11px]">#SQL</span>
-<span class="px-2 py-0.5 rounded bg-[#0B1120] text-[#94A3B8] font-mono text-[11px]">#PowerBI</span>
-<span class="px-2 py-0.5 rounded bg-[#0B1120] text-[#94A3B8] font-mono text-[11px]">#Excel</span>
-<span class="px-2 py-0.5 rounded bg-[#0B1120] text-[#94A3B8] font-mono text-[11px]">#InteligênciaArtificial</span>
-</div>
-</div>
-<!-- Badge PL-300 -->
-<div class="p-5 rounded-2xl bg-[#1E293B] border border-[#D946EF]/25 hover:border-[#D946EF]/60 transition-all flex items-start gap-4 shadow-lg">
-<div class="shrink-0 w-16 h-16 rounded-xl bg-[#0B1120] p-1.5 border border-[#334155] flex items-center justify-center">
-<img alt="Microsoft Certified Power BI Data Analyst Associate PL-300" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXw4LjqGMPslDyRX_vAaCO99Kvi7dFtoAyyzMSxyuLlOwqrobROlWyPNIzBt6GV35M5sh5hO159UE3vWB_eIB548WDmIikSYMrXWb5jfIorN-TMJ-N-0JZ3WK0TJkWo_-GQJ7dW3_OcnIH-EBhkHB-3bKMYn2xSvuUbiN2UgiNxszzhPt0JR3zvz7kWU_Vbxf3TSDYmR-WI_6PAEMuIBAEnUqoH8XkVbY2_vh8MG4Hg7ou0gi0dXsobU2JUBRxab2ayg"/>
-</div>
-<div class="flex-1">
-<div class="flex items-center justify-between mb-1">
-<span class="font-mono text-[11px] text-[#94A3B8] uppercase font-bold">Microsoft Certified: Associate</span>
-<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#1E293B] text-[#94A3B8] border border-[#334155] text-[10px] font-mono font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-[#D946EF] animate-pulse"></span> Oficial
-                  </span>
-</div>
-<h4 class="font-display text-sm text-[#F8FAFC] font-bold mb-1">
-                  Power BI Data Analyst Associate (PL-300)
-                </h4>
-<p class="font-body text-xs text-[#94A3B8] leading-relaxed mb-2">
-                  Domínio certificado em modelagem dimensional tabular avançada, DAX analítico de alta performance, governança de workspaces e distribuição de métricas no Power BI Service.
-                </p>
-<div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-[#CBD5E1]">
-<span class="px-2 py-0.5 bg-[#0B1120] rounded border border-slate-700">#PowerBI</span>
-<span class="px-2 py-0.5 bg-[#0B1120] rounded border border-slate-700">#DAX</span>
-<span class="px-2 py-0.5 bg-[#0B1120] rounded border border-slate-700">#DataModeling</span>
-</div>
-</div>
-</div>
-<!-- Badge DP-600 -->
-<div class="p-5 rounded-2xl bg-[#1E293B] border border-[#D946EF]/25 hover:border-[#D946EF]/60 transition-all flex items-start gap-4 shadow-lg">
-<div class="shrink-0 w-16 h-16 rounded-xl bg-[#0B1120] p-1.5 border border-[#334155] flex items-center justify-center">
-<img alt="Microsoft Certified Fabric Analytics Engineer Associate DP-600" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC74GMH9JvXGqZaP0j7r7mn-0Cjx5XNbqBfuHDMBJzXYCAMg-wZKv2n84PC4NGJuDF6s0H-AXTrrsydigC9-rkfSccGJ0zMYbKyblgMBi4xYZYCtgqUghn3eJMsDpxe9yZ--ceIOxP8O--IMyHqT_NPDvcreYcTFJYu0GkZgTEF25CwCS3AJaVVdTcjNG76tNDRkPIKtM5pAugVIcnv1q8Fy5_rq955ekDshPnKA_RhTBP__hVhtkUzUJsgRhMsFncO2A"/>
-</div>
-<div class="flex-1">
-<div class="flex items-center justify-between mb-1">
-<span class="font-mono text-[11px] text-[#94A3B8] uppercase font-bold">Microsoft Certified: Associate</span>
-<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#1E293B] text-[#94A3B8] border border-[#334155] text-[10px] font-mono font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-[#D946EF] animate-pulse"></span> Em Preparação
-                  </span>
-</div>
-<h4 class="font-display text-sm text-[#F8FAFC] font-bold mb-1">
-                  Fabric Analytics Engineer Associate (DP-600)
-                </h4>
-<p class="font-body text-xs text-[#94A3B8] leading-relaxed mb-2">
-                  Arquitetura de dados moderna unificada na nuvem, implementação de Lakehouse e Warehouse, pipelines Delta Lake e modelos semânticos escaláveis no ecossistema Microsoft Fabric.
-                </p>
-<div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-[#CBD5E1]">
-<span class="px-2 py-0.5 bg-[#0B1120] rounded border border-slate-700">#MicrosoftFabric</span>
-<span class="px-2 py-0.5 bg-[#0B1120] rounded border border-slate-700">#Lakehouse</span>
-<span class="px-2 py-0.5 bg-[#0B1120] rounded border border-slate-700">#DeltaLake</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- 6. SECTION CONTATO & FOOTER -->
-<section class="w-full py-24 lg:py-32 bg-[#0B1120] relative overflow-hidden" id="contato">
-<div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#1E293B] blur-[150px] rounded-full pointer-events-none"></div>
-<div class="max-w-4xl mx-auto px-6 lg:px-12 flex flex-col items-center text-center relative z-10">
-<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1E293B] border border-[#334155] text-[#94A3B8] font-mono text-xs uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(217,70,239,0.2)]">
-<span>Conexão Executiva</span>
-</div>
-<h2 class="font-display text-3xl lg:text-5xl font-extrabold text-[#F8FAFC] tracking-tight mb-6">
-          Pronto para impulsionar a inteligência de dados da sua equipe?
-        </h2>
-<p class="font-body text-base lg:text-lg text-[#94A3B8] max-w-2xl mb-12 leading-relaxed">
-          Disponível para novos desafios como Analista de Dados ou Analytics Engineer, unindo arquitetura moderna em nuvem, precisão operacional e modelos preditivos de inteligência artificial.
-        </p>
-<!-- Executive Action Buttons -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-4xl">
-<a class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#1E293B] border border-[#334155] hover:border-[#D946EF]/60 text-[#F8FAFC] hover:text-[#F8FAFC] font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-md group" href="https://www.linkedin.com/in/gabriel-vieira-dl/" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[20px] text-[#94A3B8]">work</span>
-<span>LinkedIn</span>
-</a>
-<a class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#1E293B] border border-[#334155] hover:border-[#D946EF]/60 text-[#F8FAFC] hover:text-[#F8FAFC] font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-md group" href="https://github.com/GabrielVieiraDL" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[20px] text-[#94A3B8]">terminal</span>
-<span>GitHub</span>
-</a>
-<a class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#22C55E] hover:bg-[#4ADE80] text-[#051424] font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-[0_0_26px_rgba(34,197,94,0.45)]" href="https://wa.me/5511967078219" target="_blank" rel="noopener noreferrer">
-<span class="material-symbols-outlined text-[20px]">forum</span>
-<span>WhatsApp</span>
-</a>
-<a class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#D946EF] hover:bg-[#E879F9] text-[#051424] font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-[0_0_26px_rgba(217,70,239,0.45)]" href="mailto:gabrielvieiradl@outlook.com">
-<span class="material-symbols-outlined text-[20px]">mail</span>
-<span>E-mail</span>
-</a>
-</div>
-</div>
-</section>
-</main>
-<!-- MINIMALIST FOOTER -->
-<footer class="w-full bg-[#0B1120] border-t border-slate-800/80">
-<div class="max-w-7xl mx-auto px-6 lg:px-12 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
-<div class="flex items-center gap-6">
-<a class="font-mono text-xs text-[#94A3B8] hover:text-[#F8FAFC] transition-colors" href="https://www.linkedin.com/in/gabriel-vieira-dl/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
-<span class="text-slate-700 font-mono text-xs">|</span>
-<a class="font-mono text-xs text-[#94A3B8] hover:text-[#F8FAFC] transition-colors" href="https://github.com/GabrielVieiraDL" rel="noopener noreferrer" target="_blank">GitHub</a>
-<span class="text-slate-700 font-mono text-xs">|</span>
-<a class="font-mono text-xs text-[#94A3B8] hover:text-[#F8FAFC] transition-colors" href="mailto:gabrielvieiradl@outlook.com">E-mail</a>
-<span class="text-slate-700 font-mono text-xs">|</span>
-<a class="font-mono text-xs text-[#94A3B8] hover:text-[#F8FAFC] transition-colors" href="https://wa.me/5511967078219" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-</div>
-<div class="font-mono text-xs text-[#94A3B8] text-center md:text-right">
-        Desenvolvido por: <span class="text-[#F8FAFC] font-semibold">Gabriel Vieira</span>
-</div>
-</div>
-</footer>
-</body></html>
+        <script src="app.js" defer></script>
+
+</body>
+</html>
