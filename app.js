@@ -128,7 +128,7 @@ let cacheVagasValido = false;
                 IdVaga: parseInt(vaga),
                 IdStatus: parseInt(status),
                 IdPlataforma: parseInt(plataforma),
-                PretensaoSalarial: pretensao ? parseFloat(pretensao) : null
+                PretensaoSalarial: pretensao ? parseFloat(pretensao) : 0
             };
 
             try {
