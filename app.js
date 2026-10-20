@@ -70,7 +70,6 @@ let cacheVagasValido = false;
             const tamanhoEl = document.getElementById('tamanho');
             const urlSiteEl = document.getElementById('urlSite');
             const vagaEl = document.getElementById('vaga');
-            const statusEl = document.getElementById('status');
             const plataformaEl = document.getElementById('plataforma');
             const pretensaoEl = document.getElementById('pretensao');
             
@@ -80,7 +79,6 @@ let cacheVagasValido = false;
             const tamanho = tamanhoEl.value;
             const urlSite = urlSiteEl.value.trim();
             const vaga = vagaEl.value;
-            const status = statusEl.value;
             const plataforma = plataformaEl.value;
             const pretensao = pretensaoEl.value;
             
@@ -93,7 +91,6 @@ let cacheVagasValido = false;
             tamanhoEl.classList.remove('input-error');
             urlSiteEl.classList.remove('input-error');
             vagaEl.classList.remove('input-error');
-            statusEl.classList.remove('input-error');
             plataformaEl.classList.remove('input-error');
 
             let hasError = false;
@@ -104,7 +101,6 @@ let cacheVagasValido = false;
             if (!tamanho) { tamanhoEl.classList.add('input-error'); hasError = true; }
             if (!urlSite) { urlSiteEl.classList.add('input-error'); hasError = true; }
             if (!vaga) { vagaEl.classList.add('input-error'); hasError = true; }
-            if (!status) { statusEl.classList.add('input-error'); hasError = true; }
             if (!plataforma) { plataformaEl.classList.add('input-error'); hasError = true; }
 
             if (hasError) {
@@ -126,7 +122,7 @@ let cacheVagasValido = false;
                 Tamanho: tamanho,
                 UrlSite: urlSite,
                 IdVaga: parseInt(vaga),
-                IdStatus: parseInt(status),
+                IdStatus: 1, // Status inicial: Aplicado
                 IdPlataforma: parseInt(plataforma),
                 PretensaoSalarial: pretensao ? parseFloat(pretensao) : 0
             };
@@ -149,7 +145,6 @@ let cacheVagasValido = false;
                 document.getElementById('tamanho').value = '';
                 document.getElementById('urlSite').value = '';
                 document.getElementById('vaga').value = '';
-                document.getElementById('status').value = '';
                 document.getElementById('plataforma').value = '';
                 document.getElementById('pretensao').value = '';
                 definirDataHoje();
