@@ -175,7 +175,7 @@
     <!-- VIEW 2: PROCESSOS ATIVOS -->
     <div id="view-ativas" class="view-section">
         
-        <!-- BARRA DE CONTROLES: FILTROS E PAGINAÇÃO -->
+        <!-- BARRA DE CONTROLES: FILTROS E CONTADOR DE VAGAS -->
         <div class="controls-bar" id="controls-bar" style="display: none;">
             <div class="filter-group">
                 <input type="text" id="filtro-empresa" placeholder="Buscar por empresa..." oninput="aplicarFiltros()">
@@ -188,10 +188,9 @@
                     <option value="5">Rejeitado</option>
                 </select>
             </div>
-            <div class="pagination-controls">
-                <button class="btn-page" id="btn-prev" onclick="mudarPagina(-1)">Anterior</button>
-                <span id="page-info">Página 1 de 1</span>
-                <button class="btn-page" id="btn-next" onclick="mudarPagina(1)">Próxima</button>
+            <div class="vagas-counter" id="vagas-counter">
+                <span class="counter-status-dot"></span>
+                <span id="vagas-counter-text"><span class="counter-badge-number">0</span> Vagas Ativas</span>
             </div>
         </div>
 
@@ -201,6 +200,15 @@
 
         <div class="cards-grid" id="cards-container">
             <!-- Cards gerados via JS serão injetados aqui -->
+        </div>
+
+        <!-- BARRA DE PAGINAÇÃO (ABAIXO DOS CARDS) -->
+        <div class="pagination-bar" id="pagination-bar" style="display: none;">
+            <div class="pagination-controls">
+                <button class="btn-page" id="btn-prev" onclick="mudarPagina(-1)">Anterior</button>
+                <span id="page-info">Página 1 de 1</span>
+                <button class="btn-page" id="btn-next" onclick="mudarPagina(1)">Próxima</button>
+            </div>
         </div>
     </div>
 

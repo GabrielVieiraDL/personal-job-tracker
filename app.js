@@ -167,10 +167,12 @@ let cacheVagasValido = false;
             const container = document.getElementById('cards-container');
             const spinner = document.getElementById('loading-spinner');
             const controlsBar = document.getElementById('controls-bar');
+            const paginationBar = document.getElementById('pagination-bar');
             
             container.innerHTML = '';
             spinner.style.display = 'block';
             controlsBar.style.display = 'none';
+            if (paginationBar) paginationBar.style.display = 'none';
 
             try {
                 const response = await fetch(URL_GET_VAGAS);
@@ -227,9 +229,34 @@ let cacheVagasValido = false;
             renderizarPagina();
         }
 
+        function atualizarContadorVagas() {
+            const counterEl = document.getElementById('vagas-counter-text');
+            if (!counterEl) return;
+
+            const termoBusca = document.getElementById('filtro-empresa').value.trim();
+            const statusFiltro = document.getElementById('filtro-status').value;
+
+            // Total de vagas ativas (não rejeitadas, StatusID != 5)
+            const ativasGeral = todasVagas.filter(v => v.StatusID != 5).length;
+
+            if (!termoBusca && !statusFiltro) {
+                counterEl.innerHTML = `<span class="counter-badge-number">${ativasGeral}</span> ${ativasGeral === 1 ? 'Vaga Ativa' : 'Vagas Ativas'}`;
+            } else {
+                const ativasFiltradas = vagasFiltradas.filter(v => v.StatusID != 5).length;
+                if (statusFiltro === "5") {
+                    counterEl.innerHTML = `<span class="counter-badge-number">${vagasFiltradas.length}</span> ${vagasFiltradas.length === 1 ? 'Rejeitado' : 'Rejeitados'}`;
+                } else {
+                    counterEl.innerHTML = `<span class="counter-badge-number">${ativasFiltradas}</span> ${ativasFiltradas === 1 ? 'Ativo' : 'Ativos'} <span style="opacity:0.6; font-size:0.85rem;">(${vagasFiltradas.length} total)</span>`;
+                }
+            }
+        }
+
         function renderizarPagina() {
             const container = document.getElementById('cards-container');
+            const paginationBar = document.getElementById('pagination-bar');
             container.innerHTML = '';
+
+            atualizarContadorVagas();
 
             const totalPaginas = Math.ceil(vagasFiltradas.length / ITENS_POR_PAGINA) || 1;
             
@@ -244,8 +271,11 @@ let cacheVagasValido = false;
 
             if (vagasFiltradas.length === 0) {
                 container.innerHTML = '<p style="text-align:center; width:100%; grid-column:1/-1; opacity:0.7;">Nenhuma vaga corresponde aos filtros informados.</p>';
+                if (paginationBar) paginationBar.style.display = 'none';
                 return;
             }
+
+            if (paginationBar) paginationBar.style.display = 'flex';
 
             // Fatia o array (Slice) com base na página atual
             const indexInicio = (paginaAtual - 1) * ITENS_POR_PAGINA;
@@ -311,6 +341,10 @@ let cacheVagasValido = false;
                 notifEl.style.color = '#10b981';
                 notifEl.innerText = '✓ Status atualizado!';
                 cacheVagasValido = false;
+                
+                const vagaAlvo = todasVagas.find(v => v.ID_Fato == idFato);
+                if (vagaAlvo) vagaAlvo.StatusID = novoStatus;
+                atualizarContadorVagas();
                 
             } catch (error) {
                 notifEl.style.color = '#ef4444';
