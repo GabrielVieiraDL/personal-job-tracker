@@ -227,6 +227,7 @@ let cacheVagasValido = false;
         function mudarPagina(direcao) {
             paginaAtual += direcao;
             renderizarPagina();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function atualizarContadorVagas() {
