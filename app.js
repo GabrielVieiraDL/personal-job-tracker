@@ -39,8 +39,10 @@ let cacheVagasValido = false;
 
             // 3. Verifica o Cache
             if(abaDestino === 'ativas') {
-                if (!cacheVagasValido) {
+                if (!cacheVagasValido || todasVagas.length === 0) {
                     carregarVagas();
+                } else {
+                    renderizarPagina();
                 }
             }
         }
