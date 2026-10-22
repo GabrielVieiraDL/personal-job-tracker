@@ -1,6 +1,6 @@
 // URLs de Integração com o Power Automate (Webhooks)
         const URL_POST_CANDIDATURA = "https://2b2e0ccd5c01ef24818a8be52d3158.eb.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/30/workflows/7ade87ae3b7f4079823c597758e267b8/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=weyuO3TTygCRrJfEAu4IngKbqwC0LXtOZdqZBN_QMbk";
-        const URL_GET_VAGAS = "https://2b2e0ccd5c01ef24818a8be52d3158.eb.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/31/workflows/768a383d3215454ebe933870084a2b76/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=L9LZNhg9E7bHf7qtzpi8Zvj4f5AbCATxPaodw6PsHAM";
+        const URL_GET_VAGAS = "https://2b2e0ccd5c01ef24818a8be52d3158.eb.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/05/workflows/e206451b012d406884d08dd1cf321be6/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dMeJXVfl6VolLpAwW9RXYCc1yszF8HC2Z_hFXIT3Cj8";
         const URL_UPDATE_STATUS = "https://2b2e0ccd5c01ef24818a8be52d3158.eb.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/26/workflows/a196e823230f4af79673ea2db5e699ff/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wcbG8mOArkByeDr5omic-J1z2NcR1LLZQVCjLDCfQTE";
 
         // Variáveis Globais de Estado (Filtros e Paginação)
