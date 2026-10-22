@@ -641,28 +641,55 @@ body {
 
         .job-card-actions {
             display: flex;
+            gap: 10px;
             margin-top: 5px;
+            flex-wrap: wrap;
+        }
+
+        .btn-update, .btn-copy-link {
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1 1 120px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.82rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 42px;
         }
 
         .btn-update {
             background-color: transparent;
             color: var(--primary-btn);
             border: 1px solid var(--primary-btn);
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            flex: 1;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
         }
 
         .btn-update:hover {
             background-color: var(--primary-btn);
             color: var(--primary-btn-text);
+        }
+
+        .btn-copy-link {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-copy-link:hover {
+            border-color: var(--primary-btn);
+            color: var(--primary-btn);
+        }
+
+        .btn-copy-link.copied {
+            background-color: #10b981 !important;
+            border-color: #10b981 !important;
+            color: #ffffff !important;
         }
 
         /* ====================================================

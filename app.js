@@ -309,6 +309,10 @@ let cacheVagasValido = false;
                             <option value="5" ${vaga.StatusID == 5 ? 'selected' : ''}>Rejeitado</option>
                         </select>
                         <div class="job-card-actions">
+                            <button class="btn-copy-link" id="btn-copy-${vaga.ID_Fato}" onclick="copiarLinkVaga(${vaga.ID_Fato})" title="Copiar link da vaga">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                <span>Copiar Link</span>
+                            </button>
                             <button class="btn-update" onclick="atualizarStatus(${vaga.ID_Fato})">Atualizar Status</button>
                         </div>
                         <div id="notif-card-${vaga.ID_Fato}" style="display:none; font-size:0.85rem; margin-top:8px; text-align:center; font-weight:bold;"></div>
@@ -316,6 +320,63 @@ let cacheVagasValido = false;
                 `;
                 container.appendChild(card);
             });
+        }
+
+        // ==========================================
+        // FLUXO: COPIAR LINK DA VAGA
+        // ==========================================
+        async function copiarLinkVaga(idFato) {
+            const vaga = todasVagas.find(v => v.ID_Fato == idFato);
+            const link = vaga ? (vaga.Url || vaga.URL_Site || vaga.UrlSite || vaga.Link || vaga.URL || vaga.LinkVaga) : null;
+            const btn = document.getElementById(`btn-copy-${idFato}`);
+            const notifEl = document.getElementById(`notif-card-${idFato}`);
+
+            if (!link || link === 'undefined' || link.trim() === '') {
+                if (notifEl) {
+                    notifEl.style.display = 'block';
+                    notifEl.style.color = '#eab308';
+                    notifEl.innerText = '⚠️ Link não disponível no banco.';
+                    setTimeout(() => notifEl.style.display = 'none', 3000);
+                }
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(link.trim());
+                if (btn) {
+                    const originalHtml = btn.innerHTML;
+                    btn.classList.add('copied');
+                    btn.innerHTML = '✓ Copiado!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }
+                if (notifEl) {
+                    notifEl.style.display = 'block';
+                    notifEl.style.color = '#10b981';
+                    notifEl.innerText = '✓ Link copiado!';
+                    setTimeout(() => notifEl.style.display = 'none', 2000);
+                }
+            } catch (err) {
+                // Fallback para navegadores sem permissão direta de clipboard
+                const tempInput = document.createElement('textarea');
+                tempInput.value = link.trim();
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                if (btn) {
+                    const originalHtml = btn.innerHTML;
+                    btn.classList.add('copied');
+                    btn.innerHTML = '✓ Copiado!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }
+            }
         }
 
         // ==========================================
