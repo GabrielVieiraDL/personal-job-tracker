@@ -606,10 +606,18 @@ body {
         }
 
         .job-card-header h3 {
-            margin: 0 0 6px 0;
+            margin: 0 0 4px 0;
             color: var(--text-color);
             font-size: 1.35rem;
             letter-spacing: 0.5px;
+        }
+
+        .job-card-role-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .job-card-header p {
@@ -617,6 +625,56 @@ body {
             font-size: 0.95rem;
             color: var(--primary-btn);
             font-weight: 600;
+        }
+
+        /* BADGES DE SENIORIDADE */
+        .seniority-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 9px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+            width: fit-content;
+        }
+
+        .badge-junior {
+            background-color: rgba(0, 229, 255, 0.12);
+            border-color: rgba(0, 229, 255, 0.35);
+            color: var(--primary-btn);
+        }
+
+        .badge-pleno {
+            background-color: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.35);
+            color: #34d399;
+        }
+
+        .badge-senior {
+            background-color: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.35);
+            color: #fbbf24;
+        }
+
+        .badge-trainee, .badge-estagio {
+            background-color: rgba(168, 85, 247, 0.12);
+            border-color: rgba(168, 85, 247, 0.35);
+            color: #c084fc;
+        }
+
+        .badge-lead, .badge-especialista {
+            background-color: rgba(244, 63, 94, 0.12);
+            border-color: rgba(244, 63, 94, 0.35);
+            color: #fb7185;
+        }
+
+        .badge-default {
+            background-color: rgba(148, 163, 184, 0.12);
+            border-color: rgba(148, 163, 184, 0.35);
+            color: #cbd5e1;
         }
         
         .job-card-header span.date-tag {

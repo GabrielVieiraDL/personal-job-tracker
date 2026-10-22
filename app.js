@@ -291,12 +291,40 @@ let cacheVagasValido = false;
                     if (partes.length === 3) dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
                 }
 
+                // Identificação e formatação da Senioridade
+                let cargoNome = vaga.Vaga || '';
+                let nivelNome = vaga.Senioridade || vaga.Nivel || vaga.Seniority || vaga.Nivel_Vaga || '';
+
+                if (!nivelNome && cargoNome.includes(' - ')) {
+                    const partes = cargoNome.split(' - ');
+                    if (partes.length >= 2) {
+                        cargoNome = partes[0].trim();
+                        nivelNome = partes[1].trim();
+                    }
+                }
+
+                let badgeHtml = '';
+                if (nivelNome) {
+                    const nivelClean = nivelNome.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+                    let classeBadge = 'badge-default';
+                    if (nivelClean.includes('junior')) classeBadge = 'badge-junior';
+                    else if (nivelClean.includes('pleno')) classeBadge = 'badge-pleno';
+                    else if (nivelClean.includes('senior')) classeBadge = 'badge-senior';
+                    else if (nivelClean.includes('trainee') || nivelClean.includes('estagio')) classeBadge = 'badge-trainee';
+                    else if (nivelClean.includes('lead') || nivelClean.includes('especialista')) classeBadge = 'badge-lead';
+
+                    badgeHtml = `<span class="seniority-badge ${classeBadge}">${nivelNome}</span>`;
+                }
+
                 const card = document.createElement('div');
                 card.className = 'job-card';
                 card.innerHTML = `
                     <div class="job-card-header">
                         <h3>${vaga.Empresa}</h3>
-                        <p>${vaga.Vaga}</p>
+                        <div class="job-card-role-row">
+                            <p>${cargoNome}</p>
+                            ${badgeHtml}
+                        </div>
                         <span class="date-tag">Aplicado em: ${dataFormatada}</span>
                     </div>
                     <div class="job-card-body">
