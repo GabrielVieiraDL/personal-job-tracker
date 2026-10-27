@@ -5,10 +5,44 @@
 
         // Variáveis Globais de Estado (Filtros e Paginação)
         let todasVagas = [];
-let cacheVagasValido = false;
+        let cacheVagasValido = false;
         let vagasFiltradas = [];
         let paginaAtual = 1;
         const ITENS_POR_PAGINA = 9;
+        const CACHE_TTL_MS = 20 * 60 * 1000; // 20 minutos de validade no cache de sessão
+
+        // Gerenciamento de Cache de Sessão (Evita consumo excessivo de vCore-segundos no Azure SQL)
+        function obterCacheSessao() {
+            try {
+                const raw = sessionStorage.getItem('jobtracker_vagas_cache');
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed.timestamp || !Array.isArray(parsed.data)) return null;
+                if (Date.now() - parsed.timestamp > CACHE_TTL_MS) {
+                    sessionStorage.removeItem('jobtracker_vagas_cache');
+                    return null;
+                }
+                return parsed.data;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function salvarCacheSessao(dados) {
+            try {
+                sessionStorage.setItem('jobtracker_vagas_cache', JSON.stringify({
+                    timestamp: Date.now(),
+                    data: dados
+                }));
+            } catch (e) {}
+        }
+
+        function invalidarCacheSessao() {
+            cacheVagasValido = false;
+            try {
+                sessionStorage.removeItem('jobtracker_vagas_cache');
+            } catch (e) {}
+        }
 
         function alternarTema() {
             const body = document.body;
@@ -37,13 +71,21 @@ let cacheVagasValido = false;
             document.getElementById('tab-' + abaDestino).classList.add('active');
             document.getElementById('view-' + abaDestino).classList.add('active');
 
-            // 3. Verifica o Cache
+            // 3. Verifica o Cache (Memória ou SessionStorage antes de acionar o Azure SQL)
             if(abaDestino === 'ativas') {
-                if (!cacheVagasValido || todasVagas.length === 0) {
-                    carregarVagas();
-                } else {
+                if (cacheVagasValido && todasVagas.length > 0) {
                     renderizarPagina();
+                    return;
                 }
+                const cached = obterCacheSessao();
+                if (cached && cached.length > 0) {
+                    todasVagas = cached;
+                    cacheVagasValido = true;
+                    document.getElementById('controls-bar').style.display = 'flex';
+                    aplicarFiltros();
+                    return;
+                }
+                carregarVagas();
             }
         }
 
@@ -141,6 +183,7 @@ let cacheVagasValido = false;
                 notif.className = 'notification notify-success full-width';
                 notif.style.backgroundColor = ''; 
                 notif.innerText = 'Candidatura registrada com sucesso no Banco de Dados!';
+                invalidarCacheSessao();
                 
                 document.getElementById('empresa').value = '';
                 document.getElementById('setor').value = '';
@@ -165,12 +208,24 @@ let cacheVagasValido = false;
         // ==========================================
         // FLUXO: READ (CARREGAR VAGAS ATIVAS)
         // ==========================================
-        async function carregarVagas() {
+        async function carregarVagas(forcarAtualizacao = false) {
             const container = document.getElementById('cards-container');
             const spinner = document.getElementById('loading-spinner');
             const controlsBar = document.getElementById('controls-bar');
             const paginationBar = document.getElementById('pagination-bar');
             
+            // Se não for forçado, checa se temos dados salvos no cache de sessão
+            if (!forcarAtualizacao) {
+                const cached = obterCacheSessao();
+                if (cached && cached.length > 0) {
+                    todasVagas = cached;
+                    cacheVagasValido = true;
+                    controlsBar.style.display = 'flex';
+                    aplicarFiltros();
+                    return;
+                }
+            }
+
             container.innerHTML = '';
             spinner.style.display = 'block';
             controlsBar.style.display = 'none';
@@ -178,10 +233,11 @@ let cacheVagasValido = false;
 
             try {
                 const response = await fetch(URL_GET_VAGAS);
-                if(!response.ok) throw new Error("Erro ao buscar vagas");
+                if(!response.ok) throw new Error("Erro ao buscar vagas no Azure SQL");
                 
                 todasVagas = await response.json();
                 cacheVagasValido = true;
+                salvarCacheSessao(todasVagas);
 
                 // Ordena por data (mais recentes primeiro)
                 todasVagas.sort((a, b) => {
@@ -203,8 +259,110 @@ let cacheVagasValido = false;
 
             } catch (error) {
                 spinner.style.display = 'none';
-                container.innerHTML = '<p style="text-align:center; color:#ef4444; width:100%; grid-column:1/-1;">Erro ao carregar vagas. Verifique a conexão com o banco.</p>';
-                console.error(error);
+                console.error("Falha ao comunicar com o Azure SQL / Power Automate:", error);
+                renderizarFallbackBanco(container);
+            }
+        }
+
+        // ==========================================
+        // RESILIÊNCIA SERVERLESS & MODO DEMONSTRAÇÃO
+        // ==========================================
+        function renderizarFallbackBanco(container) {
+            container.innerHTML = `
+                <div style="grid-column: 1 / -1; max-width: 620px; margin: 30px auto; background: var(--card-bg); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 12px; padding: 28px; text-align: center; box-shadow: var(--card-shadow);">
+                    <div style="font-size: 2.2rem; margin-bottom: 12px;">☁️⚡</div>
+                    <h3 style="color: #ef4444; margin-bottom: 10px; font-size: 1.25rem; font-weight: 700;">Banco em Repouso ou Limite Mensal Atingido</h3>
+                    <p style="color: var(--text-color); opacity: 0.88; font-size: 0.92rem; line-height: 1.6; margin-bottom: 22px;">
+                        Esta aplicação opera <strong>100% Serverless no Azure SQL</strong>. Para garantir <strong>custo zero</strong>, a instância entra em repouso automático (auto-pause) ou pausa ao atingir a cota da camada gratuita mensal da Azure.
+                    </p>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="carregarVagas(true)" class="btn-update" style="padding: 10px 18px; font-size: 0.85rem; border-color: var(--primary-btn); color: var(--primary-btn);">
+                            🔄 Tentar Novamente
+                        </button>
+                        <button onclick="carregarModoDemonstracao()" class="btn-copy-link" style="padding: 10px 18px; font-size: 0.85rem; border-color: #10b981; color: #10b981;">
+                            🎯 Ativar Modo Demonstração
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function carregarModoDemonstracao() {
+            todasVagas = [
+                {
+                    ID_Fato: 901,
+                    Empresa: "Nubank",
+                    Vaga: "Engenheiro de Dados - Pleno",
+                    Senioridade: "Pleno",
+                    Data: "2026-10-25T00:00:00.000Z",
+                    StatusID: 2,
+                    UrlSite: "https://nubank.com.br/carreiras",
+                    Plataforma: "LinkedIn"
+                },
+                {
+                    ID_Fato: 902,
+                    Empresa: "Itaú Unibanco",
+                    Vaga: "Analista de BI - Sênior",
+                    Senioridade: "Sênior",
+                    Data: "2026-10-23T00:00:00.000Z",
+                    StatusID: 3,
+                    UrlSite: "https://itau.com.br/carreiras",
+                    Plataforma: "Gupy"
+                },
+                {
+                    ID_Fato: 903,
+                    Empresa: "Mercado Livre",
+                    Vaga: "Analytics Engineer - Pleno",
+                    Senioridade: "Pleno",
+                    Data: "2026-10-21T00:00:00.000Z",
+                    StatusID: 1,
+                    UrlSite: "https://mercadolivre.com.br",
+                    Plataforma: "LinkedIn"
+                },
+                {
+                    ID_Fato: 904,
+                    Empresa: "Stone",
+                    Vaga: "Analista de Dados - Júnior",
+                    Senioridade: "Júnior",
+                    Data: "2026-10-19T00:00:00.000Z",
+                    StatusID: 4,
+                    UrlSite: "https://stone.com.br",
+                    Plataforma: "Gupy"
+                },
+                {
+                    ID_Fato: 905,
+                    Empresa: "Ambev Tech",
+                    Vaga: "Engenheiro de Dados - Pleno",
+                    Senioridade: "Pleno",
+                    Data: "2026-10-16T00:00:00.000Z",
+                    StatusID: 5,
+                    UrlSite: "https://ambevtech.com.br",
+                    Plataforma: "Site da Empresa"
+                },
+                {
+                    ID_Fato: 906,
+                    Empresa: "PicPay",
+                    Vaga: "Analista de BI - Pleno",
+                    Senioridade: "Pleno",
+                    Data: "2026-10-12T00:00:00.000Z",
+                    StatusID: 2,
+                    UrlSite: "https://picpay.com",
+                    Plataforma: "LinkedIn"
+                }
+            ];
+
+            cacheVagasValido = true;
+            salvarCacheSessao(todasVagas);
+            document.getElementById('controls-bar').style.display = 'flex';
+            aplicarFiltros();
+
+            const notif = document.getElementById('notification');
+            if (notif) {
+                notif.className = 'notification full-width';
+                notif.style.backgroundColor = 'rgba(16, 185, 129, 0.9)';
+                notif.innerText = '🎯 Modo Demonstração ativo: dados de exemplo carregados com sucesso!';
+                notif.style.display = 'block';
+                setTimeout(() => { notif.style.display = 'none'; }, 4000);
             }
         }
 
@@ -421,6 +579,20 @@ let cacheVagasValido = false;
             notifEl.style.color = 'var(--text-color)';
             notifEl.innerText = 'Sincronizando com Banco...';
 
+            // Suporte interativo ao Modo Demonstração
+            if (idFato >= 900) {
+                setTimeout(() => {
+                    const vagaAlvo = todasVagas.find(v => v.ID_Fato == idFato);
+                    if (vagaAlvo) vagaAlvo.StatusID = novoStatus;
+                    salvarCacheSessao(todasVagas);
+                    notifEl.style.color = '#10b981';
+                    notifEl.innerText = '✓ Status atualizado (Modo Demo)!';
+                    atualizarContadorVagas();
+                    setTimeout(() => notifEl.style.display = 'none', 2500);
+                }, 300);
+                return;
+            }
+
             try {
                 const response = await fetch(URL_UPDATE_STATUS, {
                     method: 'POST', 
@@ -432,10 +604,12 @@ let cacheVagasValido = false;
 
                 notifEl.style.color = '#10b981';
                 notifEl.innerText = '✓ Status atualizado!';
-                cacheVagasValido = false;
                 
                 const vagaAlvo = todasVagas.find(v => v.ID_Fato == idFato);
-                if (vagaAlvo) vagaAlvo.StatusID = novoStatus;
+                if (vagaAlvo) {
+                    vagaAlvo.StatusID = novoStatus;
+                    salvarCacheSessao(todasVagas);
+                }
                 atualizarContadorVagas();
                 
             } catch (error) {
@@ -447,17 +621,9 @@ let cacheVagasValido = false;
             }
         }
 
-// EAGER LOADING
-window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(async () => {
-        if (!cacheVagasValido) {
-            try {
-                const response = await fetch(URL_GET_VAGAS);
-                if(response.ok) {
-                    todasVagas = await response.json();
-                    cacheVagasValido = true;
-                }
-            } catch(e) {}
-        }
-    }, 2000);
-});
+// ==========================================
+// ARQUITETURA SERVERLESS: LAZY LOADING
+// ==========================================
+// As requisições ao Azure SQL ocorrem exclusivamente sob demanda
+// quando o usuário acessa a aba 'Processos Ativos', respeitando
+// a cota gratuita mensal de 100.000 vCore-segundos.
